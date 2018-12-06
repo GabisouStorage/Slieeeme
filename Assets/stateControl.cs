@@ -2,19 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class slime : state {
+public class stateControl : MonoBehaviour {
 
 	// Use this for initialization
-
-
-    public slime()
-    {
-        Debug.Log("CONSTRUIU SLIME");
-          
-    }
-
-
-	private void Start () {
+	void Start () {
 		
 	}
 	

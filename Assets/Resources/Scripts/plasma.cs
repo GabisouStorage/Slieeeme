@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class plasma : state {
 
+    public plasma()
+    {
+
+        Debug.Log("CONSRUIU PLASMA");
+ 
+    }
+
 	// Use this for initialization
 	void Start () {
 		

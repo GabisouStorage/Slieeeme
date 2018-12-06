@@ -23,19 +23,19 @@ public class movinetacao : MonoBehaviour {
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             euMesmo.AddForce(new Vector2(moduloForca, 0));
+        }  
+
+        euMesmo.gravityScale = 0;
+
+        if (Input.GetAxisRaw("Vertical") < 0)
+        { 
+            euMesmo.AddForce(new Vector2(0, -1 * moduloForca));
         }
 
-        // codigo relativo ao estado solido
-
-        euMesmo.gravityScale = 2;
-
-
-
-
-
-
-
-
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            euMesmo.AddForce(new Vector2(0,  moduloForca));
+        }
 
 
 

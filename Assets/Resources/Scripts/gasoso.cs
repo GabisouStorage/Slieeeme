@@ -5,6 +5,13 @@ using UnityEngine;
 public class gasoso : state {
 
 	// Use this for initialization
+
+        public gasoso()
+    {
+
+        Debug.Log("CONTRUIU GASOSO");
+ 
+    }
 	void Start () {
 		
 	}

@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class state {
+ 
 
-	 
-	 
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void firstFrame()
+    public void firstFrame()
     {
 
     }
-    void lastFrame()
+
+    public void lastFrame()
     {
 
+
     }
+
+    public void movimenta()
+    {
+
+
+    }
+
+    public void trataColisao()
+    {
+
+
+
+    }
+
 }
