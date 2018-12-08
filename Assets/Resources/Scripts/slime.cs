@@ -14,12 +14,10 @@ public class slime : state {
     }
 
 
-	private void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public override void trataTrigger(Collider2D col)
+    {
+
+
+    }
 }

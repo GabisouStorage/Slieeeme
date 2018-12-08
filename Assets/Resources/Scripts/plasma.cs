@@ -10,14 +10,10 @@ public class plasma : state {
         Debug.Log("CONSRUIU PLASMA");
  
     }
+ 
+    public   override void  trataTrigger(Collider2D col)
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    }
 }

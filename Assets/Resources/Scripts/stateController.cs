@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class stateController : MonoBehaviour {
 
-  public   state estadoAtual;
-
-   public  static Transform player;
+    public static  state estadoAtual;
+    public static GameObject player;
+    public static Rigidbody2D playerRB;
   
 
     private void Start()
     {
-      slime slimeController = new slime();
-        estadoAtual = slimeController;
-      
+        solido inicialController = new solido();
+        estadoAtual = inicialController;
+        player = gameObject;
     }
 
     private void Update()
@@ -25,12 +25,12 @@ public class stateController : MonoBehaviour {
 
         if (Input.GetKeyDown("s"))
         {
-            enterSolido();
+            enterSolido( );
         }
 
         if (Input.GetKeyDown("p"))
         {
-            enterPlasma();
+            enterPlasma( );
         }
 
         if (Input.GetKeyDown("g"))
@@ -74,7 +74,7 @@ public class stateController : MonoBehaviour {
     {
         exitCurrentState();
 
-        gasoso gasosoController = new gasoso();
+        gasoso gasosoController = new gasoso(playerRB);
         estadoAtual = gasosoController;
         estadoAtual.firstFrame();
 
@@ -92,8 +92,30 @@ public class stateController : MonoBehaviour {
         Debug.Log("ENTROU PLASMA");
     }
 
-   
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        estadoAtual.trataColisao(col);
+
+        Debug.Log("oncolisionEnter2d");
     }
+
+    //CheckPoint
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        estadoAtual.trataTrigger(col);
+    }
+
+    public static void mortePlayer()
+    {
+        Destroy(player);
+    }
+
+
+
+
+
+}
 
 
  
