@@ -1137,7 +1137,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1097212968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.63, y: 2.12, z: 0}
+  m_LocalPosition: {x: 3.63, y: 2.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1869398164}
@@ -1204,9 +1204,10 @@ MonoBehaviour:
   floorOffset: 0.5
   detectorOffset: 0.5
   detectorTopOffset: 0.5
-  detectorDirection: 0.2
-  detectorDistance: 2
+  detectorDirection: 0.3
+  detectorDistance: 1.5
   detectorTopDistance: 0.1
+  detectorMiddleDistance: 0.8
   detectorMask:
     serializedVersion: 2
     m_Bits: 256

@@ -31,6 +31,11 @@ public class SlimeBehaviour : MonoBehaviour {
     [Range(0, 10)]
     private float detectorTopDistance;
 
+
+    [SerializeField]
+    [Range(0, 10)]
+    private float detectorMiddleDistance;
+
     [SerializeField]
     private LayerMask detectorMask;
     #endregion
@@ -48,12 +53,20 @@ public class SlimeBehaviour : MonoBehaviour {
     #endregion
 
     private Rigidbody2D rb;
+
+
+    #region Movement Variables
+    private Vector2 lastNormal;
+    private RaycastHit2D nextHit;
+    #endregion
    
 
 	// Use this for initialization
 	void Start () {
-        InitializeDetectors();
 		rb = GetComponent<Rigidbody2D>();
+        InitializeDetectors();
+
+        lastNormal = middleDetector.Hit.normal;
 	}
 	
 	// Update is called once per frame
@@ -66,6 +79,9 @@ public class SlimeBehaviour : MonoBehaviour {
     void FixedUpdate()
     {
 
+        InitializeDetectors();
+
+        #region Simple Movement Logic
         float inputDirection = Input.GetAxisRaw("Horizontal");
 
         Vector2 moveDirection = Vector2.zero;
@@ -80,13 +96,14 @@ public class SlimeBehaviour : MonoBehaviour {
             moveDirectionCorrection = -middleDetector.Hit.normal.x + middleDetector.Hit.normal.y;
         }
 
-        print(moveDirection);
-
         //if(Mathf.Abs(inputDirection) > 0){
             rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
         //}
+        #endregion
 
 
+        
+        #region Hit Detectors Logic
         RaycastHit2D leftHit, rightHit;
 
         if(leftTopDetector.Hit){
@@ -107,23 +124,50 @@ public class SlimeBehaviour : MonoBehaviour {
             rightHit = rightDetector.Hit;
             //print("Direita Baixo");
         }
+        #endregion
 
-        if(leftHit){
-            //print("Foi!");
-        }else{
 
-            //print("meh!");
 
+        Vector2 currentNormal = middleDetector.Hit.normal;
+
+        if(inputDirection < 0 && leftHit){
+            nextHit = leftHit;
+        }
+        if(inputDirection > 0 && rightHit){
+            nextHit = rightHit;
+        }
+
+        print(nextHit.point);
+
+        if(currentNormal != lastNormal){
+            rb.position = nextHit.point + (nextHit.normal * floorOffset);
+
+            //print(nextHit.point + (nextHit.normal * floorOffset));
+
+
+            float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
+
+            //print(rot);
+
+            rb.rotation = rot;
         }
 
 
+
+
+
+        if(Input.GetKeyDown(KeyCode.R)){
+            rb.rotation += 90;
+        }
+
+        lastNormal = currentNormal;
 
     }
 
     void OnDrawGizmos(){
         Gizmos.color = Color.yellow;
 
-        InitializeDetectors();
+        //InitializeDetectors();
 
         Gizmos.DrawLine(leftDetector.Origin, leftDetector.Target);
 
@@ -140,7 +184,7 @@ public class SlimeBehaviour : MonoBehaviour {
 
     private void InitializeDetectors(){
 
-        middleDetector = new FloorDetector(transform.position, transform.localRotation * Vector2.down, detectorDistance, detectorMask);
+        middleDetector = new FloorDetector(transform.position, transform.localRotation * Vector2.down, detectorMiddleDistance, detectorMask);
 
 
         leftDetector = new FloorDetector(transform.TransformPoint(Vector3.left * detectorOffset), transform.localRotation * new Vector2(detectorDirection, -1), detectorDistance, detectorMask);
