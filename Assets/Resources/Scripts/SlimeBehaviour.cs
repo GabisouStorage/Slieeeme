@@ -65,7 +65,59 @@ public class SlimeBehaviour : MonoBehaviour {
 
     void FixedUpdate()
     {
-        
+
+        float inputDirection = Input.GetAxisRaw("Horizontal");
+
+        Vector2 moveDirection = Vector2.zero;
+
+        Vector2 physicDirection = Vector2.zero;
+
+        float moveDirectionCorrection = 0;
+
+        if(middleDetector.Hit.normal != Vector2.zero){
+            physicDirection = middleDetector.Hit.normal * rb.velocity;
+            moveDirection = Vector2.one - new Vector2(Mathf.Abs(middleDetector.Hit.normal.x), Mathf.Abs(middleDetector.Hit.normal.y));
+            moveDirectionCorrection = -middleDetector.Hit.normal.x + middleDetector.Hit.normal.y;
+        }
+
+        print(moveDirection);
+
+        //if(Mathf.Abs(inputDirection) > 0){
+            rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
+        //}
+
+
+        RaycastHit2D leftHit, rightHit;
+
+        if(leftTopDetector.Hit){
+            leftHit = leftTopDetector.Hit;
+            //print("Esquerda Cima");
+        }else{
+            leftHit = leftDetector.Hit;
+            //print("Esquerda Baixo");
+        }
+
+        if (rightTopDetector.Hit)
+        {
+            rightHit = rightTopDetector.Hit;
+            //print("Direita Cima");
+        }
+        else
+        {
+            rightHit = rightDetector.Hit;
+            //print("Direita Baixo");
+        }
+
+        if(leftHit){
+            //print("Foi!");
+        }else{
+
+            //print("meh!");
+
+        }
+
+
+
     }
 
     void OnDrawGizmos(){
