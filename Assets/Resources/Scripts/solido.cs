@@ -28,6 +28,9 @@ public class solido :state {
       //  Debug.Log("passou trigger");
     }
 
-  
-    
+    public override void exitThisState()
+    {
+        
+    }
+
 }

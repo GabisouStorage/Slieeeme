@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
+  - curvaDireita
+  - curvaBaixo
+  - curvaCima
+  - curvaEsquerda
   layers:
   - Default
   - TransparentFX

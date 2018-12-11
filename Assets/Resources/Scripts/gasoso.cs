@@ -44,4 +44,8 @@ public class gasoso : state {
         trans = col.gameObject.transform;
     }
 
+    public override void exitThisState()
+    { 
+    }
+
 }

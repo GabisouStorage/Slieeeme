@@ -33,7 +33,7 @@ public class stateController : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-            enterPlasma( );
+           // enterPlasma( );
         }
 
         if (Input.GetKeyDown("g"))
@@ -45,6 +45,7 @@ public class stateController : MonoBehaviour {
     public void exitCurrentState()
     {
         estadoAtual.lastFrame();
+        estadoAtual.exitThisState();
         estadoAtual = null;
 
         Debug.Log("SAIU DE ONDE ESTAVA");
@@ -89,11 +90,11 @@ public class stateController : MonoBehaviour {
         sr.color = Color.gray;
     }
 
-    public void enterPlasma()
+    public void enterPlasma(tomadaController circuitoPai)
     {
         exitCurrentState();
 
-        plasma plasmaController = new plasma();
+        plasma plasmaController = new plasma(circuitoPai);
         estadoAtual = plasmaController;
         estadoAtual.firstFrame();
 
@@ -113,8 +114,21 @@ public class stateController : MonoBehaviour {
     //CheckPoint
     void OnTriggerEnter2D(Collider2D col)
     {
-        estadoAtual.trataTrigger(col);
+        /*verifica se o objeto com que colidimos posssui o script tomadaController 
+        ,se isso for verdade significa que colidimos com um trigger do tipo tomada, se nao
+        , colidimos com um trigger de outro tipo
+        */
+        tomadaController tc = col.GetComponent<tomadaController>();
+   
+        if (tc != null) { 
+            tc.entrar(gameObject);
+        }
+        else
+        {
+            estadoAtual.trataTrigger(col);
+        }
     }
+    
 
     public static void mortePlayer()
     {

@@ -19,5 +19,12 @@ public class slime : state {
     {
 
 
-    }  
+    }
+
+    public override void exitThisState()
+    {
+        movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
+        movimenta.enabled = true;
+
+    }
 }

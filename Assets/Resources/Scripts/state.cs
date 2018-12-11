@@ -43,6 +43,7 @@ public abstract class state {
    
 
     public abstract void trataTrigger(Collider2D col);
-    
+
+    public abstract void exitThisState();
 
 }
