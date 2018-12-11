@@ -7,6 +7,7 @@ public class stateController : MonoBehaviour {
     public static  state estadoAtual;
     public static GameObject player;
     public static Rigidbody2D playerRB;
+    public static  SpriteRenderer sr;
   
 
     private void Start()
@@ -14,6 +15,8 @@ public class stateController : MonoBehaviour {
         solido inicialController = new solido();
         estadoAtual = inicialController;
         player = gameObject;
+        playerRB = gameObject.GetComponent<Rigidbody2D>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -56,6 +59,8 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU SOLIDO");
+
+        sr.color = Color.red;
     }
 
     public void enterSlime()
@@ -68,6 +73,7 @@ public class stateController : MonoBehaviour {
 
         Debug.Log("ENTROU SLIME");
 
+        sr.color = Color.green;
     }
 
     public void enterGasoso()
@@ -79,6 +85,8 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU GASOSO");
+
+        sr.color = Color.gray;
     }
 
     public void enterPlasma()
@@ -90,6 +98,8 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU PLASMA");
+
+        sr.color = Color.blue;
     }
 
 
