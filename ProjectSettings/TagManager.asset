@@ -9,6 +9,8 @@ TagManager:
   - curvaBaixo
   - curvaCima
   - curvaEsquerda
+  - transformaGasoso
+  - transformaSolido
   layers:
   - Default
   - TransparentFX

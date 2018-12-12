@@ -8,15 +8,18 @@ public class stateController : MonoBehaviour {
     public static GameObject player;
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
-  
+    public float g;
+     
 
     private void Start()
-    {
-        solido inicialController = new solido();
-        estadoAtual = inicialController;
+    { 
         player = gameObject;
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
+
+        solido inicialController = new solido();
+        estadoAtual = inicialController;
+        playerRB.gravityScale = g;
     }
 
     private void Update()
@@ -33,7 +36,7 @@ public class stateController : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-           // enterPlasma( );
+            //enterPlasma(circuitoPai);
         }
 
         if (Input.GetKeyDown("g"))
@@ -60,7 +63,9 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU SOLIDO");
-
+        parar(playerRB);
+        playerRB.gravityScale = (g * 1);
+        Debug.Log(playerRB.gravityScale);
         sr.color = Color.red;
     }
 
@@ -75,18 +80,22 @@ public class stateController : MonoBehaviour {
         Debug.Log("ENTROU SLIME");
 
         sr.color = Color.green;
+        parar(playerRB);
+        playerRB.gravityScale = 0;
     }
 
     public void enterGasoso()
     {
         exitCurrentState();
 
-        gasoso gasosoController = new gasoso(playerRB);
+        gasoso gasosoController = new gasoso();
         estadoAtual = gasosoController;
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU GASOSO");
-
+        parar(playerRB);
+        playerRB.gravityScale = (g *-1);
+        Debug.Log(playerRB.gravityScale);
         sr.color = Color.gray;
     }
 
@@ -99,7 +108,9 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU PLASMA");
-
+       
+        parar(playerRB);
+        playerRB.gravityScale = 0;
         sr.color = Color.blue;
     }
 
@@ -112,7 +123,7 @@ public class stateController : MonoBehaviour {
     }
 
     //CheckPoint
-    void OnTriggerEnter2D(Collider2D col)
+    int OnTriggerEnter2D(Collider2D col)
     {
         /*verifica se o objeto com que colidimos posssui o script tomadaController 
         ,se isso for verdade significa que colidimos com um trigger do tipo tomada, se nao
@@ -122,11 +133,22 @@ public class stateController : MonoBehaviour {
    
         if (tc != null) { 
             tc.entrar(gameObject);
+            return 0;
         }
-        else
+
+        lampadaController lc = col.GetComponent<lampadaController>();
+
+        if(lc != null)
         {
-            estadoAtual.trataTrigger(col);
+            lc.entrar(gameObject);
+            return 0;
         }
+
+
+
+            estadoAtual.trataTrigger(col);
+            return 0;
+         
     }
     
 
@@ -135,11 +157,30 @@ public class stateController : MonoBehaviour {
         Destroy(player);
     }
 
+    public static void parar(Rigidbody2D RB2D)
+    {
+        RB2D.velocity = new Vector3(0, 0, 0);
+        RB2D.angularVelocity = 0;
+        movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
+        movimenta.enabled = false;
+    }
 
+    public static void subir()
+    {
+     //  playerRB.gravityScale = -1;
+    }
 
+    public static void cair()
+    {
+     // playerRB.gravityScale = 1;
+    }
+
+    public static  void gravidadeZero()
+    {
+      // playerRB.gravityScale = 0;
+    }
 
 
 }
 
 
- 

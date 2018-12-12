@@ -6,11 +6,10 @@ public class slime : state {
 
 	// Use this for initialization
 
-
-    public slime()
+    public slime( )
     {
         Debug.Log("CONSTRUIU SLIME");
-          
+        stateController.gravidadeZero();
     }
 
 
@@ -23,8 +22,7 @@ public class slime : state {
 
     public override void exitThisState()
     {
-        movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
-        movimenta.enabled = true;
+       
 
     }
 }

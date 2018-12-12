@@ -9,6 +9,8 @@ public class solido :state {
     public solido( )
     {
         Debug.Log("CONSTRUIU SOLIDO");
+        stateController.cair();
+        
     }
 
 
@@ -20,6 +22,9 @@ public class solido :state {
         if(quebravel != null)
         {
             // caso o objeto com que colidimos seja quebravel
+            
+            //modificar mecanismo de avaliaçao da quebra para fazer baseado na distancia a partir da qual o sólido cairá
+            // guardar x e y da transformaçao e verificar na queda OU utilizar o raycast
             quebravel.colidiramComigo(pesoObjeto);
 
             Debug.Log("passou triggerCerto");
@@ -32,5 +37,7 @@ public class solido :state {
     {
         
     }
+
+    
 
 }

@@ -10,13 +10,14 @@ public class plasma : state {
     public  Rigidbody2D euMesmo;
     public tomadaController circuitoPai;
 
+
     public plasma(tomadaController circuitoPai)
     {
 
         Debug.Log("CONSRUIU PLASMA");
+        stateController.gravidadeZero();
         this.circuitoPai = circuitoPai;
-
-        parar();
+     
     }
  
     public   override void  trataTrigger(Collider2D col)
@@ -55,22 +56,8 @@ public class plasma : state {
         }
 
     }
-
-    void Update()
-    {
-
-
-      
-    }
-
-    public void parar()
-    {
-        Rigidbody2D RB2D = stateController.player.GetComponent<Rigidbody2D>();
-        RB2D.velocity = new Vector3(0, 0, 0);
-        RB2D.angularVelocity = 0;
-        movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
-        movimenta.enabled = false;
-    }
+     
+ 
 
     public override void exitThisState()
     {
@@ -78,5 +65,5 @@ public class plasma : state {
         movimenta.enabled = true;
 
     }
-
+     
 }

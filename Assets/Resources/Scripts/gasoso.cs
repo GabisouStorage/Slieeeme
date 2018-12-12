@@ -8,26 +8,11 @@ public class gasoso : state {
     
 	// Use this for initialization
 
-        public gasoso(Rigidbody2D playerRb)
+        public gasoso( )
         {
-
-        /* na construçao do estado gasoso
-         * analisamos se a gravidade esta pra baixo ou pra cima 
-         * e com isso , invertemos a gravidade usando o componente rigidBody do player 
-         * que está armazenado na classe state controller
-         */
-
         Debug.Log("CONTRUIU GASOSO");
 
-        if (playerRb.gravityScale > 0)
-        {
-            playerRb.gravityScale = -1;
-        }
-        else
-        {
-            playerRb.gravityScale = 1;
-        }
-
+        stateController.subir();
     }
     
 
@@ -47,5 +32,6 @@ public class gasoso : state {
     public override void exitThisState()
     { 
     }
+     
 
 }

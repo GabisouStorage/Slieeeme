@@ -4,7 +4,14 @@ using UnityEngine;
 
 public abstract class state {
 
- 
+    public Rigidbody2D RB2D;
+
+
+    public state()
+    {
+
+
+    }
 
     public void firstFrame()
     {
@@ -45,5 +52,8 @@ public abstract class state {
     public abstract void trataTrigger(Collider2D col);
 
     public abstract void exitThisState();
+
+
+    
 
 }
