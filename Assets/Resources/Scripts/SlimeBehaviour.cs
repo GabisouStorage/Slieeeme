@@ -72,14 +72,13 @@ public class SlimeBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        UpdateDetectors();
+        //UpdateDetectors();
 
 	}
 
     void FixedUpdate()
     {
-
-        InitializeDetectors();
+        UpdateDetectors();
 
         #region Simple Movement Logic
         float inputDirection = Input.GetAxisRaw("Horizontal");
@@ -90,28 +89,31 @@ public class SlimeBehaviour : MonoBehaviour {
 
         float moveDirectionCorrection = 0;
 
-        if(middleDetector.Hit.normal != Vector2.zero){
+        if (middleDetector.Hit.normal != Vector2.zero)
+        {
             physicDirection = middleDetector.Hit.normal * rb.velocity;
             moveDirection = Vector2.one - new Vector2(Mathf.Abs(middleDetector.Hit.normal.x), Mathf.Abs(middleDetector.Hit.normal.y));
             moveDirectionCorrection = -middleDetector.Hit.normal.x + middleDetector.Hit.normal.y;
         }
 
-        //if(Mathf.Abs(inputDirection) > 0){
-            rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
-        //}
+        //rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
         #endregion
 
 
-        
+
         #region Hit Detectors Logic
         RaycastHit2D leftHit, rightHit;
 
-        if(leftTopDetector.Hit){
+        bool topDetectors = false;
+
+        if (leftTopDetector.Hit)
+        {
             leftHit = leftTopDetector.Hit;
-            //print("Esquerda Cima");
-        }else{
+            topDetectors = true;
+        }
+        else
+        {
             leftHit = leftDetector.Hit;
-            //print("Esquerda Baixo");
         }
 
         if (rightTopDetector.Hit)
@@ -129,57 +131,66 @@ public class SlimeBehaviour : MonoBehaviour {
 
 
         Vector2 currentNormal = middleDetector.Hit.normal;
+        RaycastHit2D otherHit;
 
-        if(inputDirection < 0 && leftHit){
+        if (inputDirection < 0 && leftHit)
+        {
             nextHit = leftHit;
+            otherHit = rightHit;
         }
-        if(inputDirection > 0 && rightHit){
+        if (inputDirection > 0 && rightHit)
+        {
             nextHit = rightHit;
+            otherHit = leftHit;
         }
 
-        print(nextHit.point);
+        if(nextHit && nextHit.normal.magnitude > 0){
+            if(nextHit.normal != currentNormal){
+                rb.position = nextHit.point + (nextHit.normal * floorOffset);
 
-        if(currentNormal != lastNormal){
-            rb.position = nextHit.point + (nextHit.normal * floorOffset);
+                float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
 
-            //print(nextHit.point + (nextHit.normal * floorOffset));
+                rb.rotation = rot;
 
+                if(topDetectors){
+                    print(Time.time);
+                }
 
-            float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
-
-            //print(rot);
-
-            rb.rotation = rot;
+            }else{
+                rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
+            }
         }
 
 
-
-
-
-        if(Input.GetKeyDown(KeyCode.R)){
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             rb.rotation += 90;
         }
 
         lastNormal = currentNormal;
-
     }
 
     void OnDrawGizmos(){
-        Gizmos.color = Color.yellow;
 
-        //InitializeDetectors();
+        try{
+            Gizmos.color = Color.yellow;
 
-        Gizmos.DrawLine(leftDetector.Origin, leftDetector.Target);
+            //InitializeDetectors();
 
-        Gizmos.DrawLine(leftTopDetector.Origin, leftTopDetector.Target);
+            Gizmos.DrawLine(leftDetector.Origin, leftDetector.Target);
 
-
-        Gizmos.DrawLine(rightDetector.Origin, rightDetector.Target);
-
-        Gizmos.DrawLine(rightTopDetector.Origin, rightTopDetector.Target);
+            Gizmos.DrawLine(leftTopDetector.Origin, leftTopDetector.Target);
 
 
-        Gizmos.DrawLine(middleDetector.Origin, middleDetector.Target);
+            Gizmos.DrawLine(rightDetector.Origin, rightDetector.Target);
+
+            Gizmos.DrawLine(rightTopDetector.Origin, rightTopDetector.Target);
+
+
+            Gizmos.DrawLine(middleDetector.Origin, middleDetector.Target);
+        }catch{
+
+        }
     }
 
     private void InitializeDetectors(){
@@ -206,14 +217,14 @@ public class SlimeBehaviour : MonoBehaviour {
         leftDetector.Direction = transform.localRotation * new Vector2(detectorDirection, -1);
         
         leftTopDetector.Origin = transform.TransformPoint(Vector3.left * detectorTopOffset);
-        leftDetector.Direction = transform.localRotation * Vector2.left;
+        leftTopDetector.Direction = transform.localRotation * Vector2.left;
 
 
         rightDetector.Origin = transform.TransformPoint(Vector3.right * detectorOffset);
         rightDetector.Direction = transform.localRotation * new Vector2(-detectorDirection, -1);
 
         rightTopDetector.Origin = transform.TransformPoint(Vector3.right * detectorTopOffset);
-        rightDetector.Direction = transform.localRotation *Vector2.right;
+        rightTopDetector.Direction = transform.localRotation *Vector2.right;
     }
 
 }
