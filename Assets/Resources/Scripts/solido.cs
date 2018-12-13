@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class solido :state {
+public class solido : state {
 
     public static int pesoObjeto = 15;
     public int distanciaQuebra;
-
-    RaycastHit2D atingido;
+ 
 
     GameObject player;
 
@@ -17,16 +16,12 @@ public class solido :state {
     Vector3 pontoTranfosrmacaoSolido;
     Vector3 pontoColisaoComObjetoQuebravel;
 
-    public solido(GameObject player,int distanciaQuebra)
+    public solido(GameObject player, int distanciaQuebra)
     {
         Debug.Log("CONSTRUIU SOLIDO");
 
         this.player = player;
-
-        RaycastHit2D atingido = Physics2D.Raycast(player.transform.position, Vector2.down, distanciaQuebra,stateController.breakable);
-        this.atingido = atingido;
-
-        Debug.Log(atingido.distance);
+         
 
         Debug.Log("RAYCAST");
 
@@ -40,37 +35,32 @@ public class solido :state {
 
 
     public override void trataTrigger(Collider2D col)
-    { 
+    {
         // procura se o objeto com que colidimos possui o script Objeto Quebrar
         objetoQuebrar quebravel = col.GetComponent<objetoQuebrar>();
 
-        if(quebravel != null)
+        if (quebravel != null)
         {
             // caso o objeto com que colidimos seja quebravel
-            
+
             //modificar mecanismo de avaliaçao da quebra para fazer baseado na distancia a partir da qual o sólido cairá
             // guardar x e y da transformaçao e verificar na queda OU utilizar o raycast
-        
+
         }
 
-      //  Debug.Log("passou trigger");
+        //  Debug.Log("passou trigger");
     }
 
     public override void exitThisState()
     {
-        
+
     }
 
-    public override void trataColisao(Collision2D col) 
+    public override void trataColisao(Collision2D col)
     {
-        
-      
-        if (atingido.distance > distanciaQuebra)
-        {
-            Debug.Log("atingimos algo");
-        }
 
-        Debug.Log(atingido.distance);
+
+      
 
         // o objeto que colidiu com o player
         GameObject objetoColisor = col.gameObject;
@@ -86,14 +76,14 @@ public class solido :state {
 
         pontoColisaoComObjetoQuebravel = player.transform.position;
 
-        verificaDistanciaColisao(pontoColisaoComObjetoQuebravel, pontoTranfosrmacaoSolido,col.collider);
+        verificaDistanciaColisao(pontoColisaoComObjetoQuebravel, pontoTranfosrmacaoSolido, col.collider);
     }
-    
-    public void verificaDistanciaColisao(Vector3 pontoColisao, Vector3 pontoTransformacao,Collider2D col)
+
+    public void verificaDistanciaColisao(Vector3 pontoColisao, Vector3 pontoTransformacao, Collider2D col)
     {
         float distancia = (pontoTransformacao.y - pontoColisao.y);
 
-        if(distancia > distanciaQuebra)
+        if (distancia > distanciaQuebra)
         {
 
             Debug.Log("QUEBROU");
@@ -102,15 +92,15 @@ public class solido :state {
         {
             Debug.Log("NAO QUEBROU");
         }
-    }
+    
 
-        Debug.Log(distancia);
+     Debug.Log(distancia);
 
-        Debug.Log("QUEBROU");
+    Debug.Log("QUEBROU");
 
-        quebrarObjeto(col);
+     quebrarObjeto(col);
 
-    }
+}
 
     public void quebrarObjeto(Collider2D col)
     {
