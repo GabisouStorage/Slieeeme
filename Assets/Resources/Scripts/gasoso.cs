@@ -12,7 +12,7 @@ public class gasoso : state {
         {
         Debug.Log("CONTRUIU GASOSO");
 
-        stateController.subir();
+       
     }
     
 
@@ -32,6 +32,19 @@ public class gasoso : state {
     public override void exitThisState()
     { 
     }
-     
 
+    public override void trataColisao(Collision2D col)
+    {
+        // o objeto que colidiu com o player
+        GameObject objetoColisor = col.gameObject;
+
+        if (objetoColisor.name.Contains("enemy"))
+        {
+            // chama o metodo no state controller que indica a morte do player
+            stateController.mortePlayer();
+
+            Debug.Log("tratou certo");
+        }
+
+    }
 }

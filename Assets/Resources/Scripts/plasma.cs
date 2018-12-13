@@ -15,7 +15,7 @@ public class plasma : state {
     {
 
         Debug.Log("CONSRUIU PLASMA");
-        stateController.gravidadeZero();
+      
         this.circuitoPai = circuitoPai;
      
     }
@@ -65,5 +65,20 @@ public class plasma : state {
         movimenta.enabled = true;
 
     }
-     
+
+    public override void trataColisao(Collision2D col)
+    {
+        // o objeto que colidiu com o player
+        GameObject objetoColisor = col.gameObject;
+
+        if (objetoColisor.name.Contains("enemy"))
+        {
+            // chama o metodo no state controller que indica a morte do player
+            stateController.mortePlayer();
+
+            Debug.Log("tratou certo");
+        }
+
+    }
+
 }

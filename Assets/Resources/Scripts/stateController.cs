@@ -9,7 +9,13 @@ public class stateController : MonoBehaviour {
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
     public float g;
-     
+    public int distanciaQuebra;
+
+    [SerializeField]
+   public  static LayerMask breakable;
+
+
+
 
     private void Start()
     { 
@@ -17,7 +23,7 @@ public class stateController : MonoBehaviour {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
 
-        solido inicialController = new solido();
+        solido inicialController = new solido(player,distanciaQuebra);
         estadoAtual = inicialController;
         playerRB.gravityScale = g;
     }
@@ -58,7 +64,7 @@ public class stateController : MonoBehaviour {
     {
         exitCurrentState();
 
-        solido solidoController = new solido();
+        solido solidoController = new solido(player,distanciaQuebra);
         estadoAtual = solidoController;
         estadoAtual.firstFrame();
 
@@ -164,22 +170,6 @@ public class stateController : MonoBehaviour {
         movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
         movimenta.enabled = false;
     }
-
-    public static void subir()
-    {
-     //  playerRB.gravityScale = -1;
-    }
-
-    public static void cair()
-    {
-     // playerRB.gravityScale = 1;
-    }
-
-    public static  void gravidadeZero()
-    {
-      // playerRB.gravityScale = 0;
-    }
-
 
 }
 
