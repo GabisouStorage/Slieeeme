@@ -11,7 +11,9 @@ public class gasoso : state {
         public gasoso( )
         {
         Debug.Log("CONTRUIU GASOSO");
-        }
+
+       
+    }
     
 
     void Update()

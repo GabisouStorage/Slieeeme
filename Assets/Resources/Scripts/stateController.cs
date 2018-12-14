@@ -9,14 +9,21 @@ public class stateController : MonoBehaviour {
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
     public float g;
-   
+    public int distanciaQuebra;
+
+    [SerializeField]
+   public  static LayerMask breakable;
+
+
+
+
     private void Start()
     { 
         player = gameObject;
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
 
-        solido inicialController = new solido(player);
+        solido inicialController = new solido(player,distanciaQuebra);
         estadoAtual = inicialController;
         playerRB.gravityScale = g;
     }
@@ -51,20 +58,18 @@ public class stateController : MonoBehaviour {
         estadoAtual = null;
 
         Debug.Log("SAIU DE ONDE ESTAVA");
-
-        pararSemBloquearMovimentacao(playerRB);
     }
 
     public void enterSolido()
     {
         exitCurrentState();
 
-        solido solidoController = new solido(player);
+        solido solidoController = new solido(player,distanciaQuebra);
         estadoAtual = solidoController;
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU SOLIDO");
-       
+        parar(playerRB);
         playerRB.gravityScale = (g * 1);
         Debug.Log(playerRB.gravityScale);
         sr.color = Color.red;
@@ -81,7 +86,7 @@ public class stateController : MonoBehaviour {
         Debug.Log("ENTROU SLIME");
 
         sr.color = Color.green;
-       
+        parar(playerRB);
         playerRB.gravityScale = 0;
     }
 
@@ -94,7 +99,7 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU GASOSO");
-        
+        parar(playerRB);
         playerRB.gravityScale = (g *-1);
         Debug.Log(playerRB.gravityScale);
         sr.color = Color.gray;
@@ -110,7 +115,7 @@ public class stateController : MonoBehaviour {
 
         Debug.Log("ENTROU PLASMA");
        
-       
+        parar(playerRB);
         playerRB.gravityScale = 0;
         sr.color = Color.blue;
     }
@@ -165,14 +170,6 @@ public class stateController : MonoBehaviour {
         movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
         movimenta.enabled = false;
     }
-
-    public static void pararSemBloquearMovimentacao(Rigidbody2D RB2D)
-    {
-        RB2D.velocity = new Vector3(0, 0, 0);
-        RB2D.angularVelocity = 0;
-    }
-
-
 
 }
 
