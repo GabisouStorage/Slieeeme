@@ -15,7 +15,6 @@ public class plasma : state {
     {
 
         Debug.Log("CONSRUIU PLASMA");
-      
         this.circuitoPai = circuitoPai;
      
     }
@@ -61,8 +60,7 @@ public class plasma : state {
 
     public override void exitThisState()
     {
-        movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
-        movimenta.enabled = true;
+        stateController.liberaMovimentacao();
 
     }
 

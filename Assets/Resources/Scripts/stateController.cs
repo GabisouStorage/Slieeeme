@@ -8,7 +8,8 @@ public class stateController : MonoBehaviour {
     public static GameObject player;
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
-    public float g;
+    public float  g = 2;
+    public float grav;
    
     private void Start()
     { 
@@ -18,7 +19,7 @@ public class stateController : MonoBehaviour {
 
         solido inicialController = new solido(player);
         estadoAtual = inicialController;
-        playerRB.gravityScale = g;
+        playerRB.gravityScale = 1;
     }
 
     private void Update()
@@ -52,7 +53,9 @@ public class stateController : MonoBehaviour {
 
         Debug.Log("SAIU DE ONDE ESTAVA");
 
-        pararSemBloquearMovimentacao(playerRB);
+        pararSemBloquearMovimentacao();
+        liberaStateController();
+        liberaMovimentacao();
     }
 
     public void enterSolido()
@@ -64,10 +67,12 @@ public class stateController : MonoBehaviour {
         estadoAtual.firstFrame();
 
         Debug.Log("ENTROU SOLIDO");
-       
-        playerRB.gravityScale = (g * 1);
+
         Debug.Log(playerRB.gravityScale);
         sr.color = Color.red;
+
+        pararSemBloquearMovimentacao();
+        playerRB.gravityScale = g;
     }
 
     public void enterSlime()
@@ -81,7 +86,8 @@ public class stateController : MonoBehaviour {
         Debug.Log("ENTROU SLIME");
 
         sr.color = Color.green;
-       
+
+        pararSemBloquearMovimentacao();
         playerRB.gravityScale = 0;
     }
 
@@ -95,9 +101,14 @@ public class stateController : MonoBehaviour {
 
         Debug.Log("ENTROU GASOSO");
         
-        playerRB.gravityScale = (g *-1);
+   
         Debug.Log(playerRB.gravityScale);
         sr.color = Color.gray;
+
+        pararSemBloquearMovimentacao();
+        playerRB.gravityScale = (g * -1);
+
+        grav = (g * -1);
     }
 
     public void enterPlasma(tomadaController circuitoPai)
@@ -111,8 +122,15 @@ public class stateController : MonoBehaviour {
         Debug.Log("ENTROU PLASMA");
        
        
-        playerRB.gravityScale = 0;
+       
         sr.color = Color.blue;
+
+        bloqueiaMovimentacao();
+        bloqueiaStateController();
+
+        pararSemBloquearMovimentacao();
+        playerRB.gravityScale = 0;
+
     }
 
 
@@ -158,21 +176,45 @@ public class stateController : MonoBehaviour {
         Destroy(player);
     }
 
-    public static void parar(Rigidbody2D RB2D)
-    {
-        RB2D.velocity = new Vector3(0, 0, 0);
-        RB2D.angularVelocity = 0;
-        movinetacao movimenta = stateController.player.GetComponent<movinetacao>();
-        movimenta.enabled = false;
-    }
+    
 
-    public static void pararSemBloquearMovimentacao(Rigidbody2D RB2D)
+    public static void pararSemBloquearMovimentacao()
     {
-        RB2D.velocity = new Vector3(0, 0, 0);
-        RB2D.angularVelocity = 0;
+        playerRB.velocity = new Vector3(0, 0, 0);
+        playerRB.angularVelocity = 0;
     }
 
 
+    public static void liberaStateController()
+    {
+        stateController sc = player.GetComponent<stateController>();
+        sc.enabled = true;
+
+    }
+
+
+    public static void bloqueiaMovimentacao()
+    {
+        movinetacao mov = player.GetComponent<movinetacao>();
+        mov.enabled = false;
+
+    }
+
+    public static  void liberaMovimentacao()
+    {
+        movinetacao mov = player.GetComponent<movinetacao>();
+        mov.enabled = true;
+
+    }
+
+
+    public static void bloqueiaStateController()
+    {
+        stateController sc = player.GetComponent<stateController>();
+        sc.enabled = false;
+    }
+
+     
 
 }
 
