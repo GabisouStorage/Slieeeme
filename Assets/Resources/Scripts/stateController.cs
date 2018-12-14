@@ -9,7 +9,8 @@ public class stateController : MonoBehaviour {
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
     public float  g = 2;
-   
+    public bool autorizaMudancaSlime = false;
+    public static bool isDead = false;
    
     private void Start()
     { 
@@ -20,26 +21,27 @@ public class stateController : MonoBehaviour {
         solido inicialController = new solido(player);
         estadoAtual = inicialController;
        playerRB.gravityScale = g;
-    }
+         isDead = false;
+}
 
     private void Update()
     {
-        if (Input.GetKeyDown("l"))
+        if (Input.GetKeyDown("1") && autorizaMudancaSlime == true)
         {
             enterSlime();
         }
 
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKeyDown("2"))
         {
             enterSolido( );
         }
 
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown("3"))
         {
             //enterPlasma(circuitoPai);
         }
 
-        if (Input.GetKeyDown("g"))
+        if (Input.GetKeyDown("4"))
         {
             enterGasoso();
         }
@@ -142,6 +144,24 @@ public class stateController : MonoBehaviour {
         estadoAtual.trataColisao(col);
 
         Debug.Log("oncolisionEnter2d");
+
+
+        if (col.collider.tag == "gosma")
+        {
+            autorizaMudancaSlime = true;
+
+        }
+
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.collider.tag == "gosma")
+        {
+            autorizaMudancaSlime = false;
+
+        }
+
     }
 
     //CheckPoint
@@ -183,6 +203,7 @@ public class stateController : MonoBehaviour {
     public static void mortePlayer()
     {
         Destroy(player);
+        stateController.isDead = true;
     }
 
     
@@ -223,20 +244,7 @@ public class stateController : MonoBehaviour {
         sc.enabled = false;
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        Collider collider = collision.collider;
-
-        if(collider.tag == "plataformaMovel")
-        {
-
-            Debug.Log("PLATTTTTTTTTT");
-        }
-
-        Debug.Log("PLATTTTTTTTTT");
-    }
-
-
+     
 }
 
 

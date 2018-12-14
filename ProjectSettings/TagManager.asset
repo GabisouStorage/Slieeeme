@@ -16,6 +16,7 @@ TagManager:
   - ventaPraEsquerda
   - ventaPraDireita
   - plataformaMovel
+  - gosma
   layers:
   - Default
   - TransparentFX
