@@ -81,7 +81,14 @@ public class SlimeBehaviour : MonoBehaviour {
         UpdateDetectors();
 
         #region Simple Movement Logic
-        float inputDirection = Input.GetAxisRaw("Horizontal");
+
+        Vector2 moveNormal = Vector2.zero;
+
+        if (middleDetector.Hit) {
+            moveNormal = middleDetector.Hit.normal;
+        }
+
+        float inputDirection = CorrectInput(moveNormal);
 
         Vector2 moveDirection = Vector2.zero;
 
@@ -127,6 +134,7 @@ public class SlimeBehaviour : MonoBehaviour {
             //print("Direita Baixo");
         }
         #endregion
+
 
 
 
@@ -225,6 +233,26 @@ public class SlimeBehaviour : MonoBehaviour {
 
         rightTopDetector.Origin = transform.TransformPoint(Vector3.right * detectorTopOffset);
         rightTopDetector.Direction = transform.localRotation *Vector2.right;
+    }
+
+    float CorrectInput(Vector2 normalMove) {
+
+        KeyCode backKey, frontKey;
+        float inputHorizontal = Input.GetAxisRaw("Horizontal");
+        float inputVertical = Input.GetAxisRaw("Vertical");
+
+        if (normalMove.y != 0)
+        {
+            return inputHorizontal * normalMove.y;
+        }
+        else if (normalMove.x != 0)
+        {
+
+            return inputVertical * normalMove.x * -1;
+        }
+        else {
+            return 0;
+        }
     }
 
 }
