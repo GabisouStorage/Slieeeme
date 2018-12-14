@@ -11,6 +11,11 @@ TagManager:
   - curvaEsquerda
   - transformaGasoso
   - transformaSolido
+  - ventaPraBaixo
+  - ventaPraCima
+  - ventaPraEsquerda
+  - ventaPraDireita
+  - plataformaMovel
   layers:
   - Default
   - TransparentFX

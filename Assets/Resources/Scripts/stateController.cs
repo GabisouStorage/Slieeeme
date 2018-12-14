@@ -9,7 +9,7 @@ public class stateController : MonoBehaviour {
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
     public float  g = 2;
-    public float grav;
+   
    
     private void Start()
     { 
@@ -19,7 +19,7 @@ public class stateController : MonoBehaviour {
 
         solido inicialController = new solido(player);
         estadoAtual = inicialController;
-        playerRB.gravityScale = 1;
+       playerRB.gravityScale = g;
     }
 
     private void Update()
@@ -43,6 +43,9 @@ public class stateController : MonoBehaviour {
         {
             enterGasoso();
         }
+
+  
+
     }
 
     public void exitCurrentState()
@@ -108,7 +111,7 @@ public class stateController : MonoBehaviour {
         pararSemBloquearMovimentacao();
         playerRB.gravityScale = (g * -1);
 
-        grav = (g * -1);
+       
     }
 
     public void enterPlasma(tomadaController circuitoPai)
@@ -163,7 +166,13 @@ public class stateController : MonoBehaviour {
             return 0;
         }
 
+        plataformaMove pm = col.GetComponent<plataformaMove>();
 
+        if(pm != null)
+        {
+            pm.entrar(gameObject);
+            return 0;
+        }
 
             estadoAtual.trataTrigger(col);
             return 0;
@@ -214,7 +223,19 @@ public class stateController : MonoBehaviour {
         sc.enabled = false;
     }
 
-     
+    private void OnCollisionStay(Collision collision)
+    {
+        Collider collider = collision.collider;
+
+        if(collider.tag == "plataformaMovel")
+        {
+
+            Debug.Log("PLATTTTTTTTTT");
+        }
+
+        Debug.Log("PLATTTTTTTTTT");
+    }
+
 
 }
 

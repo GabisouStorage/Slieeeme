@@ -25,8 +25,7 @@ public class movinetacao : MonoBehaviour {
             euMesmo.AddForce(new Vector2(moduloForca, 0));
         }  
 
-        euMesmo.gravityScale = 0;
-
+      
         if (Input.GetAxisRaw("Vertical") < 0)
         { 
             euMesmo.AddForce(new Vector2(0, -1 * moduloForca));
@@ -37,6 +36,10 @@ public class movinetacao : MonoBehaviour {
             euMesmo.AddForce(new Vector2(0,  moduloForca));
         }
 
+        if (Input.GetKey("p"))
+        {
+            stateController.pararSemBloquearMovimentacao();
+        }
 
 
     }

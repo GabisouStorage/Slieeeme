@@ -19,8 +19,7 @@ public class solido : state {
         pontoTranfosrmacaoSolido = player.transform.position;
 
         Rigidbody2D RB2D = player.GetComponent<Rigidbody2D>();
-        RB2D.gravityScale = 5;
-
+        
     }
 
 
