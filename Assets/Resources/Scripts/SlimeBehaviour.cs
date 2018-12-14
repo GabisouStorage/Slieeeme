@@ -152,21 +152,29 @@ public class SlimeBehaviour : MonoBehaviour {
             otherHit = leftHit;
         }
 
-        if(nextHit && nextHit.normal.magnitude > 0){
-            if(nextHit.normal != currentNormal){
+        if (nextHit && nextHit.normal.magnitude > 0 && nextHit.collider.gameObject.tag == "Gosma")
+        {
+            if (nextHit.normal != currentNormal)
+            {
                 rb.position = nextHit.point + (nextHit.normal * floorOffset);
 
                 float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
 
                 rb.rotation = rot;
 
-                if(topDetectors){
+                if (topDetectors)
+                {
                     print(Time.time);
                 }
 
-            }else{
+            }
+            else
+            {
                 rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
             }
+        }
+        else {
+            rb.velocity = Vector2.zero;
         }
 
 
