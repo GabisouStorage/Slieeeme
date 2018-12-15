@@ -10,9 +10,17 @@ public class PauseMenu : MonoBehaviour {
     //COLOCAR O GAMEOBJECT PAUSEMENU COM OS BUTOES DENTRO DE RESUME E QUIT NA OPÇÃO DO SCRIPT NO UNITY
     //O SCRIPT DEVE SER COLOCADO NO CANVAS DO MENU DE PAUSE
     public GameObject pauseMenu;
-	
-	// Update is called once per frame
-	void Update () {
+
+    private SFXManager sfxMan;
+
+    void Start()
+    {
+        //Função para carregar os efeitos de som do script sfxmanager
+        sfxMan = FindObjectOfType<SFXManager>();
+    }
+
+    // Update is called once per frame
+    void Update () {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if (Pausado)
@@ -26,14 +34,15 @@ public class PauseMenu : MonoBehaviour {
 		
 	}
     // Funções que pausam o game a partir do recebimento do valor 0 ou 1 para o timescale; associar o resume ao On Click para ativar o butão de resume
-    void Resume ()
+    public void Resume ()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         Pausado = false;
+        sfxMan.play.Play();
     }
 
-    void Pause()
+    public void Pause()
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
@@ -43,6 +52,7 @@ public class PauseMenu : MonoBehaviour {
     //Função para sair do jogo ao pressionar o butão quit; associar este ao On Click de Quit
     public void QuitGame()
     {
+        sfxMan.click.Play();
         Application.Quit();
     }
 
