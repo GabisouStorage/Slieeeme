@@ -152,7 +152,18 @@ public class stateController : MonoBehaviour {
 
         }
 
+
+       
+
     }
+
+    
+
+
+
+
+
+
 
     private void OnCollisionExit2D(Collision2D col)
     {
