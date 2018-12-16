@@ -13,13 +13,22 @@ public class stateController : MonoBehaviour {
     public bool autorizaMudancaSlime = false;
     public static bool isDead = false;
     public float velocidadeSubidaVertical;
+
+    private bool changeSlime = false;
    
     private void Start()
     { 
         player = gameObject;
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
-    slime inicialController = new slime();
+        
+        slime inicialController = new slime();
+
+        SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
+        //sb.meHabilitar();
+        sb.IsActive = true;
+
+
         estadoAtual = inicialController;
        playerRB.gravityScale = 0;
          isDead = false;
@@ -72,6 +81,8 @@ public class stateController : MonoBehaviour {
     {
         exitCurrentState();
 
+        playerRB.rotation = 0;
+
         solido solidoController = new solido(player);
         estadoAtual = solidoController;
         estadoAtual.firstFrame();
@@ -87,26 +98,35 @@ public class stateController : MonoBehaviour {
 
     public void enterSlime()
     {
-        exitCurrentState();
 
-        slime slimeController = new slime();
-        estadoAtual = slimeController;
-        estadoAtual.firstFrame();
 
-        Debug.Log("ENTROU SLIME");
+        SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
 
-      //  sr.color = Color.green;
+        if (changeSlime || sb.CanChange)
+        { 
+            exitCurrentState();
 
-        pararSemBloquearMovimentacao();
-        playerRB.gravityScale = 0;
+            slime slimeController = new slime();
+            estadoAtual = slimeController;
+            estadoAtual.firstFrame();
 
-        habilitarSlimeBehaviour();
+            Debug.Log("ENTROU SLIME");
+
+        //  sr.color = Color.green;
+
+            pararSemBloquearMovimentacao();
+            playerRB.gravityScale = 0;
+
+            habilitarSlimeBehaviour();
+        }
 
     }
 
     public void enterGasoso()
     {
         exitCurrentState();
+
+        playerRB.rotation = 0;
 
         gasoso gasosoController = new gasoso();
         estadoAtual = gasosoController;
@@ -128,6 +148,8 @@ public class stateController : MonoBehaviour {
     public void enterPlasma(tomadaController circuitoPai)
     {
         exitCurrentState();
+
+        playerRB.rotation = 0;
 
         plasma plasmaController = new plasma(circuitoPai);
         estadoAtual = plasmaController;
@@ -153,7 +175,27 @@ public class stateController : MonoBehaviour {
         estadoAtual.trataColisao(col);
 
         Debug.Log("oncolisionEnter2d");
- 
+        if (col.gameObject.tag == "Gosma")
+        {
+            changeSlime = true;
+        }
+
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Gosma")
+        {
+            changeSlime = true;
+            print(Time.time);
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Gosma"){
+            changeSlime = false;
+        }
     }
 
     public void desabilitarSlimeBehaviour()
@@ -161,6 +203,7 @@ public class stateController : MonoBehaviour {
 
         SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
         sb.meDesabilitar();
+        //sb.IsActive = false;
     }
 
 
@@ -168,7 +211,9 @@ public class stateController : MonoBehaviour {
     {
 
       SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
+
         sb.meHabilitar();
+        //sb.IsActive = true;
     }
 
 

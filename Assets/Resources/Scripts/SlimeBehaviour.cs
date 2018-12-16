@@ -49,7 +49,9 @@ public class SlimeBehaviour : MonoBehaviour {
 
     private FloorDetector rightTopDetector;
 
-    private FloorDetector middleDetector;
+    private FloorDetector middleDownDetector;
+
+    private FloorDetector middleTopDetector;
     #endregion
 
     private Rigidbody2D rb;
@@ -59,6 +61,20 @@ public class SlimeBehaviour : MonoBehaviour {
     private Vector2 lastNormal;
     private RaycastHit2D nextHit;
     #endregion
+
+    private bool isActive;
+
+    public bool IsActive
+    {
+        set { this.isActive = value; }
+    }
+
+    private bool canChange;
+
+    public bool CanChange
+    {
+        get { return this.canChange; }
+    }
    
 
 	// Use this for initialization
@@ -66,9 +82,7 @@ public class SlimeBehaviour : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D>();
         InitializeDetectors();
 
-        lastNormal = middleDetector.Hit.normal;
-
-        Debug.Log("ELEFANTE");
+        lastNormal = middleDownDetector.Hit.normal;
 	}
 	
 	// Update is called once per frame
@@ -82,110 +96,120 @@ public class SlimeBehaviour : MonoBehaviour {
     {
         UpdateDetectors();
 
-        #region Simple Movement Logic
-
-        Vector2 moveNormal = Vector2.zero;
-
-        if (middleDetector.Hit) {
-            moveNormal = middleDetector.Hit.normal;
+        if (middleDownDetector.Hit ||leftTopDetector.Hit || rightTopDetector.Hit || middleTopDetector.Hit)
+        {
+            canChange = true;
+        }else{
+            canChange = false;
         }
 
-        float inputDirection = CorrectInput(moveNormal);
+        if(isActive){
 
-        Vector2 moveDirection = Vector2.zero;
+            #region Simple Movement Logic
 
-        Vector2 physicDirection = Vector2.zero;
+            Vector2 moveNormal = Vector2.zero;
 
-        float moveDirectionCorrection = 0;
+            if (middleDownDetector.Hit) {
+                moveNormal = middleDownDetector.Hit.normal;
+            }
 
-        if (middleDetector.Hit.normal != Vector2.zero)
-        {
-            physicDirection = middleDetector.Hit.normal * rb.velocity;
-            moveDirection = Vector2.one - new Vector2(Mathf.Abs(middleDetector.Hit.normal.x), Mathf.Abs(middleDetector.Hit.normal.y));
-            moveDirectionCorrection = -middleDetector.Hit.normal.x + middleDetector.Hit.normal.y;
-        }
+            float inputDirection = CorrectInput(moveNormal);
 
-        //rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
-        #endregion
+            Vector2 moveDirection = Vector2.zero;
 
+            Vector2 physicDirection = Vector2.zero;
 
+            float moveDirectionCorrection = 0;
 
-        #region Hit Detectors Logic
-        RaycastHit2D leftHit, rightHit;
-
-        bool topDetectors = false;
-
-        if (leftTopDetector.Hit)
-        {
-            leftHit = leftTopDetector.Hit;
-            topDetectors = true;
-        }
-        else
-        {
-            leftHit = leftDetector.Hit;
-        }
-
-        if (rightTopDetector.Hit)
-        {
-            rightHit = rightTopDetector.Hit;
-            //print("Direita Cima");
-        }
-        else
-        {
-            rightHit = rightDetector.Hit;
-            //print("Direita Baixo");
-        }
-        #endregion
-
-
-
-
-        Vector2 currentNormal = middleDetector.Hit.normal;
-        RaycastHit2D otherHit;
-
-        if (inputDirection < 0 && leftHit)
-        {
-            nextHit = leftHit;
-            otherHit = rightHit;
-        }
-        if (inputDirection > 0 && rightHit)
-        {
-            nextHit = rightHit;
-            otherHit = leftHit;
-        }
-
-        if (nextHit && nextHit.normal.magnitude > 0 && nextHit.collider.gameObject.tag == "Gosma")
-        {
-            if (nextHit.normal != currentNormal)
+            if (middleDownDetector.Hit.normal != Vector2.zero)
             {
-                rb.position = nextHit.point + (nextHit.normal * floorOffset);
+                physicDirection = middleDownDetector.Hit.normal * rb.velocity;
+                moveDirection = Vector2.one - new Vector2(Mathf.Abs(middleDownDetector.Hit.normal.x), Mathf.Abs(middleDownDetector.Hit.normal.y));
+                moveDirectionCorrection = -middleDownDetector.Hit.normal.x + middleDownDetector.Hit.normal.y;
+            }
 
-                float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
+            //rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
+            #endregion
 
-                rb.rotation = rot;
 
-                if (topDetectors)
-                {
-                    print(Time.time);
-                }
 
+            #region Hit Detectors Logic
+            RaycastHit2D leftHit, rightHit;
+
+            bool topDetectors = false;
+
+            if (leftTopDetector.Hit)
+            {
+                leftHit = leftTopDetector.Hit;
+                topDetectors = true;
             }
             else
             {
-                rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
+                leftHit = leftDetector.Hit;
             }
-        }
-        else {
-            rb.velocity = Vector2.zero;
-        }
+
+            if (rightTopDetector.Hit)
+            {
+                rightHit = rightTopDetector.Hit;
+                //print("Direita Cima");
+            }
+            else
+            {
+                rightHit = rightDetector.Hit;
+                //print("Direita Baixo");
+            }
+            #endregion
 
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            rb.rotation += 90;
-        }
 
-        lastNormal = currentNormal;
+
+            Vector2 currentNormal = middleDownDetector.Hit.normal;
+            RaycastHit2D otherHit;
+
+            if (inputDirection < 0 && leftHit)
+            {
+                nextHit = leftHit;
+                otherHit = rightHit;
+            }
+            if (inputDirection > 0 && rightHit)
+            {
+                nextHit = rightHit;
+                otherHit = leftHit;
+            }
+
+            if (nextHit && nextHit.normal.magnitude > 0 && nextHit.collider.gameObject.tag == "Gosma")
+            {
+                if (nextHit.normal != currentNormal)
+                {
+                    rb.position = nextHit.point + (nextHit.normal * floorOffset);
+
+                    float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
+
+                    rb.rotation = rot;
+
+                    if (topDetectors)
+                    {
+                        print(Time.time);
+                    }
+
+                }
+                else
+                {
+                    rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
+                }
+            }
+            else {
+                rb.velocity = Vector2.zero;
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                rb.rotation += 90;
+            }
+
+            lastNormal = currentNormal;
+        }
     }
 
     void OnDrawGizmos(){
@@ -199,13 +223,15 @@ public class SlimeBehaviour : MonoBehaviour {
 
             Gizmos.DrawLine(leftTopDetector.Origin, leftTopDetector.Target);
 
+            Gizmos.DrawLine(middleTopDetector.Origin, middleTopDetector.Target);
+
 
             Gizmos.DrawLine(rightDetector.Origin, rightDetector.Target);
 
             Gizmos.DrawLine(rightTopDetector.Origin, rightTopDetector.Target);
 
 
-            Gizmos.DrawLine(middleDetector.Origin, middleDetector.Target);
+            Gizmos.DrawLine(middleDownDetector.Origin, middleDownDetector.Target);
         }catch{
 
         }
@@ -213,7 +239,9 @@ public class SlimeBehaviour : MonoBehaviour {
 
     private void InitializeDetectors(){
 
-        middleDetector = new FloorDetector(transform.position, transform.localRotation * Vector2.down, detectorMiddleDistance, detectorMask);
+        middleDownDetector = new FloorDetector(transform.position, transform.localRotation * Vector2.down, detectorMiddleDistance, detectorMask);
+
+        middleTopDetector = new FloorDetector(transform.position, transform.localRotation * Vector2.up, detectorTopDistance * 2f + 0.5f, detectorMask);
 
 
         leftDetector = new FloorDetector(transform.TransformPoint(Vector3.left * detectorOffset), transform.localRotation * new Vector2(detectorDirection, -1), detectorDistance, detectorMask);
@@ -227,8 +255,11 @@ public class SlimeBehaviour : MonoBehaviour {
     }
 
     private void UpdateDetectors(){
-        middleDetector.Origin = transform.position;
-        middleDetector.Direction = transform.localRotation * Vector2.down;
+        middleDownDetector.Origin = transform.position;
+        middleDownDetector.Direction = transform.localRotation * Vector2.down;
+
+        middleTopDetector.Origin = transform.position;
+        middleTopDetector.Direction = transform.localRotation * Vector2.up;
 
 
         leftDetector.Origin = transform.TransformPoint(Vector3.left * detectorOffset);
@@ -277,12 +308,25 @@ public class SlimeBehaviour : MonoBehaviour {
         Vector2 posicaoAtual = gameObject.transform.position;
         enabled = true;
         gameObject.transform.position = posicaoAtual;
+
+        if(middleDownDetector.Hit){
+            nextHit = middleDownDetector.Hit;
+        }else if(leftTopDetector.Hit){
+            nextHit = leftTopDetector.Hit;
+        }else if(rightTopDetector.Hit){
+            nextHit = rightTopDetector.Hit;
+        }else if(middleTopDetector.Hit){
+            nextHit = middleTopDetector.Hit;
+        }
+
+        isActive = true;
+
     }
 
     public void meDesabilitar()
     {
-       
-        enabled = false;
+       isActive = false;
+        //enabled = false;
     
     }
 
