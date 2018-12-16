@@ -17,31 +17,30 @@ public class stateController : MonoBehaviour {
         player = gameObject;
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
-
-        solido inicialController = new solido(player);
+    slime inicialController = new slime();
         estadoAtual = inicialController;
-       playerRB.gravityScale = g;
+       playerRB.gravityScale = 0;
          isDead = false;
 }
 
     private void Update()
     {
-        if (Input.GetKeyDown("1") && autorizaMudancaSlime == true)
+        if (Input.GetKeyDown("l") && autorizaMudancaSlime == true)
         {
             enterSlime();
         }
 
-        if (Input.GetKeyDown("2"))
+        if (Input.GetKeyDown("s"))
         {
             enterSolido( );
         }
 
-        if (Input.GetKeyDown("3"))
+        if (Input.GetKeyDown("p"))
         {
             //enterPlasma(circuitoPai);
         }
 
-        if (Input.GetKeyDown("4"))
+        if (Input.GetKeyDown("g"))
         {
             enterGasoso();
         }
@@ -61,6 +60,10 @@ public class stateController : MonoBehaviour {
         pararSemBloquearMovimentacao();
         liberaStateController();
         liberaMovimentacao();
+
+        desabilitarSlimeBehaviour();
+
+
     }
 
     public void enterSolido()
@@ -74,7 +77,7 @@ public class stateController : MonoBehaviour {
         Debug.Log("ENTROU SOLIDO");
 
         Debug.Log(playerRB.gravityScale);
-        sr.color = Color.red;
+     //   sr.color = Color.red;
 
         pararSemBloquearMovimentacao();
         playerRB.gravityScale = g;
@@ -90,10 +93,13 @@ public class stateController : MonoBehaviour {
 
         Debug.Log("ENTROU SLIME");
 
-        sr.color = Color.green;
+      //  sr.color = Color.green;
 
         pararSemBloquearMovimentacao();
         playerRB.gravityScale = 0;
+
+        habilitarSlimeBehaviour();
+
     }
 
     public void enterGasoso()
@@ -108,7 +114,7 @@ public class stateController : MonoBehaviour {
         
    
         Debug.Log(playerRB.gravityScale);
-        sr.color = Color.gray;
+     //   sr.color = Color.gray;
 
         pararSemBloquearMovimentacao();
         playerRB.gravityScale = (g * -1);
@@ -128,7 +134,7 @@ public class stateController : MonoBehaviour {
        
        
        
-        sr.color = Color.blue;
+    //    sr.color = Color.blue;
 
         bloqueiaMovimentacao();
         bloqueiaStateController();
@@ -144,36 +150,29 @@ public class stateController : MonoBehaviour {
         estadoAtual.trataColisao(col);
 
         Debug.Log("oncolisionEnter2d");
-
-
-        if (col.collider.tag == "gosma")
-        {
-            autorizaMudancaSlime = true;
-
-        }
-
-
-       
-
+ 
     }
 
-    
-
-
-
-
-
-
-
-    private void OnCollisionExit2D(Collision2D col)
+    public void desabilitarSlimeBehaviour()
     {
-        if (col.collider.tag == "gosma")
-        {
-            autorizaMudancaSlime = false;
 
-        }
-
+        SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
+        sb.enabled = false;
     }
+
+
+    public void habilitarSlimeBehaviour()
+    {
+
+        SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
+        sb.enabled = true;
+    }
+
+
+
+
+
+
 
     //CheckPoint
     int OnTriggerEnter2D(Collider2D col)
@@ -237,14 +236,14 @@ public class stateController : MonoBehaviour {
     public static void bloqueiaMovimentacao()
     {
         movinetacao mov = player.GetComponent<movinetacao>();
-        mov.enabled = false;
+       // mov.enabled = false;
 
     }
 
     public static  void liberaMovimentacao()
     {
         movinetacao mov = player.GetComponent<movinetacao>();
-        mov.enabled = true;
+        //mov.enabled = true;
 
     }
 
