@@ -216,8 +216,14 @@ public class SlimeBehaviour : MonoBehaviour {
                 otherVelocity = middleDownDetector.Hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity;
             }
 
-            if(rb.velocity.x >= 0){
-            rb.velocity += otherVelocity;
+            if (rb.velocity.x * Mathf.Sign(otherVelocity.x) >= 0)
+            {
+                rb.velocity += new Vector2(otherVelocity.x, 0f);
+            }
+
+            if (rb.velocity.y * Mathf.Sign(otherVelocity.y) >= 0)
+            {
+                rb.velocity += new Vector2(0f, otherVelocity.y);
             }
 
         }
