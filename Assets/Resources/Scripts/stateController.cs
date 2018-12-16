@@ -8,9 +8,11 @@ public class stateController : MonoBehaviour {
     public static GameObject player;
     public static Rigidbody2D playerRB;
     public static  SpriteRenderer sr;
-    public float  g = 2;
+    public float  aceleracaoqueda = 2;
+    
     public bool autorizaMudancaSlime = false;
     public static bool isDead = false;
+    public float velocidadeSubidaVertical;
    
     private void Start()
     { 
@@ -80,7 +82,7 @@ public class stateController : MonoBehaviour {
      //   sr.color = Color.red;
 
         pararSemBloquearMovimentacao();
-        playerRB.gravityScale = g;
+        playerRB.gravityScale = aceleracaoqueda;
     }
 
     public void enterSlime()
@@ -117,7 +119,8 @@ public class stateController : MonoBehaviour {
      //   sr.color = Color.gray;
 
         pararSemBloquearMovimentacao();
-        playerRB.gravityScale = (g * -1);
+        playerRB.gravityScale = 0;
+        playerRB.velocity = new Vector2(0, velocidadeSubidaVertical);
 
        
     }
@@ -157,15 +160,15 @@ public class stateController : MonoBehaviour {
     {
 
         SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
-        sb.enabled = false;
+        sb.meDesabilitar();
     }
 
 
     public void habilitarSlimeBehaviour()
     {
 
-        SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
-        sb.enabled = true;
+      SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
+        sb.meHabilitar();
     }
 
 

@@ -296,6 +296,11 @@ Prefab:
       propertyPath: autorizaMudancaSlime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114865955494384890, guid: 97dfd4de2f8533b4498f86f31b445642,
+        type: 2}
+      propertyPath: vsubida
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97dfd4de2f8533b4498f86f31b445642, type: 2}
   m_IsPrefabAsset: 0
@@ -1320,7 +1325,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 550670445}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35, y: -0.08, z: -10}
+  m_LocalPosition: {x: 6.18, y: -0.11, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 662545931}

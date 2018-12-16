@@ -170,7 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58c5c2a7a15b2e42bb3f049fe7dc3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g: 2
+  vqueda: 0.5
+  vsubida: 0.5
   autorizaMudancaSlime: 0
 --- !u!212 &212976806168785354
 SpriteRenderer:

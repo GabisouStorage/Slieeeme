@@ -67,6 +67,8 @@ public class SlimeBehaviour : MonoBehaviour {
         InitializeDetectors();
 
         lastNormal = middleDetector.Hit.normal;
+
+        Debug.Log("ELEFANTE");
 	}
 	
 	// Update is called once per frame
@@ -262,5 +264,37 @@ public class SlimeBehaviour : MonoBehaviour {
             return 0;
         }
     }
+
+
+    public void meHabilitar()
+    {
+        //ATENÇAO PODE PARECER IMBECIL ARMAZENAR A POSIÇAO ATUAL ANTES DE DAR O ENABLED = TRUE SOMENTE PARA 
+        // COLOCAR A POSIÇAO DE VOLTA AO VALOR ARMAZENADO 
+        // POREM CASO ISSO NAO SEJA FEITO , APOS O SEU SLIME IR PARA SOLIDO , CAIR E IR PARA OUTRO TILE , SE ELE VOLTAR A SER SLIME 
+        // ELE VOLTA PARA O PONTO ONDE HAVIA DEIXADO DE SER SLIME
+
+
+        Vector2 posicaoAtual = gameObject.transform.position;
+        enabled = true;
+        gameObject.transform.position = posicaoAtual;
+    }
+
+    public void meDesabilitar()
+    {
+       
+        enabled = false;
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
