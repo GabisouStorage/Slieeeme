@@ -209,6 +209,17 @@ public class SlimeBehaviour : MonoBehaviour {
             }
 
             lastNormal = currentNormal;
+
+            //rb.AddForce(middleDownDetector.Hit.normal * -1 * 1000, ForceMode2D.Force);
+            Vector2 otherVelocity = Vector2.zero;
+            if(middleDownDetector.Hit){
+                otherVelocity = middleDownDetector.Hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity;
+            }
+
+            if(rb.velocity.x >= 0){
+            rb.velocity += otherVelocity;
+            }
+
         }
     }
 
