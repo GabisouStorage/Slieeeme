@@ -7,6 +7,13 @@ TagManager:
   - Gosma
   - curvaDireita
   - transformaGasoso
+  - gosma
+  - plataformaMovel
+  - ventaPraDireita
+  - ventaPraCima
+  - ventaPraBaixo
+  - ventaPraEsquerda
+  - trap
   layers:
   - Default
   - TransparentFX

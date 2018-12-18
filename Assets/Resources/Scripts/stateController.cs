@@ -174,6 +174,14 @@ public class stateController : MonoBehaviour {
     {
         estadoAtual.trataColisao(col);
 
+        if (col.gameObject.tag == "trap")
+        {
+            Collider2D euMesmo = gameObject.GetComponent<Collider2D>();
+            Collider2D outro = col.gameObject.GetComponent<Collider2D>();
+
+            Physics2D.IgnoreCollision(euMesmo, outro);
+        }
+
         Debug.Log("oncolisionEnter2d");
         if (col.gameObject.tag == "Gosma")
         {
