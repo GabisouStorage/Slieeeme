@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ativo: 0
   tempoDecorrido: 0
-  tempoEspera: 0
-  tempoTiro: 0
+  tempoEspera: 3
+  tempoTiro: 2
 --- !u!212 &212796970529042420
 SpriteRenderer:
   m_ObjectHideFlags: 1
