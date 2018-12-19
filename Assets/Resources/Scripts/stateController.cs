@@ -281,8 +281,9 @@ public class stateController : MonoBehaviour {
 
     public static void mortePlayer()
     {
-        Destroy(player);
+         
         stateController.isDead = true;
+        Destroy(player);
     }
 
     

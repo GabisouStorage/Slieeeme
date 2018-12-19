@@ -14,6 +14,7 @@ TagManager:
   - ventaPraBaixo
   - ventaPraEsquerda
   - trap
+  - grid
   layers:
   - Default
   - TransparentFX
