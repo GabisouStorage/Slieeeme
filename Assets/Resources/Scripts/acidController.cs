@@ -8,7 +8,7 @@ public class acidController : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if ((collision.collider.tag == "Player") && stateController.estadoAtual is solido)
+        if ((collision.collider.tag == "Player") && stateController.estadoAtual is slime)
         {
 
             stateController.mortePlayer();
