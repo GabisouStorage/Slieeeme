@@ -174,13 +174,26 @@ public class stateController : MonoBehaviour {
     {
         estadoAtual.trataColisao(col);
 
-        if (col.gameObject.tag == "trap")
+        if ((col.gameObject.tag == "trap") && stateController.estadoAtual is solido)
         {
             Collider2D euMesmo = gameObject.GetComponent<Collider2D>();
             Collider2D outro = col.gameObject.GetComponent<Collider2D>();
 
             Physics2D.IgnoreCollision(euMesmo, outro);
         }
+
+
+        if ((col.gameObject.tag == "grid") && stateController.estadoAtual is gasoso)
+        {
+            Collider2D euMesmo = gameObject.GetComponent<Collider2D>();
+            Collider2D outro = col.gameObject.GetComponent<Collider2D>();
+
+            Physics2D.IgnoreCollision(euMesmo, outro);
+        }
+
+
+
+
 
         Debug.Log("oncolisionEnter2d");
         if (col.gameObject.tag == "Gosma")
