@@ -24,7 +24,7 @@ public class mainMenu : MonoBehaviour
     public void jogar()
     {
         Debug.Log("play");
-        SceneManager.LoadScene("level1");
+        SceneManager.LoadScene("Level1");
        sfxMan.play.Play();
 
     }
