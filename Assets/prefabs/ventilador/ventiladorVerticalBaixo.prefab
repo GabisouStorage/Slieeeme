@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 212796970529042420}
   - component: {fileID: 61966789689728702}
   - component: {fileID: 114237458491418094}
-  - component: {fileID: 50508701943828330}
+  - component: {fileID: 50283645805825356}
   m_Layer: 0
-  m_Name: ventiladorHorizontalEsquerda
-  m_TagString: ventaPraEsquerda
+  m_Name: ventiladorVerticalBaixo
+  m_TagString: ventaPraBaixo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50508701943828330
+--- !u!50 &50283645805825356
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forcaVento: 0
   estouSugando: 0
-  contagemRodadas: 0
 --- !u!212 &212796970529042420
 SpriteRenderer:
   m_ObjectHideFlags: 1

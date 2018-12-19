@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4714876392513038}
   - component: {fileID: 212796970529042420}
   - component: {fileID: 61966789689728702}
+  - component: {fileID: 114013851939138196}
   - component: {fileID: 50601848549488144}
-  - component: {fileID: 114051456828112336}
   m_Layer: 0
-  m_Name: tornadoHorizontalDireita
+  m_Name: tornadoVerticalCima
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 6, y: 0}
+  m_Offset: {x: 0, y: 4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86,9 +86,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 11, y: 0.4}
+  m_Size: {x: 0.4, y: 7}
   m_EdgeRadius: 0
---- !u!114 &114051456828112336
+--- !u!114 &114013851939138196
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,9 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc0dfca8633a2342886cb3b230d0c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempoDecorrido: 0
-  tempoEspera: 0
-  tempoTiro: 0
 --- !u!212 &212796970529042420
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -138,7 +135,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 16153668e2add424292824df862e7c02, type: 3}
-  m_Color: {r: 0.2205316, g: 0.9137255, b: 0.15294115, a: 1}
+  m_Color: {r: 0.9137255, g: 0.15294115, b: 0.7658839, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
