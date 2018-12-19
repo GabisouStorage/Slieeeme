@@ -15,6 +15,7 @@ TagManager:
   - ventaPraEsquerda
   - trap
   - grid
+  - Spinning
   layers:
   - Default
   - TransparentFX

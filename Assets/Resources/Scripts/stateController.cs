@@ -195,7 +195,7 @@ public class stateController : MonoBehaviour {
 
 
 
-        Debug.Log("oncolisionEnter2d");
+//        Debug.Log("oncolisionEnter2d");
         if (col.gameObject.tag == "Gosma")
         {
             changeSlime = true;
@@ -208,7 +208,6 @@ public class stateController : MonoBehaviour {
         if (other.gameObject.tag == "Gosma")
         {
             changeSlime = true;
-            print(Time.time);
         }
     }
 

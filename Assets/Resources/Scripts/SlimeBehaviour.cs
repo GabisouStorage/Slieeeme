@@ -111,9 +111,13 @@ public class SlimeBehaviour : MonoBehaviour {
 
             if (middleDownDetector.Hit) {
                 moveNormal = middleDownDetector.Hit.normal;
+            }else{
+                moveNormal = lastNormal;
             }
 
-            float inputDirection = CorrectInput(moveNormal);
+            float inputDirection = CorrectInput(moveNormal, false);
+
+            float spinDirection = CorrectInput(moveNormal, true);
 
             Vector2 moveDirection = Vector2.zero;
 
@@ -126,7 +130,11 @@ public class SlimeBehaviour : MonoBehaviour {
                 physicDirection = middleDownDetector.Hit.normal * rb.velocity;
                 moveDirection = Vector2.one - new Vector2(Mathf.Abs(middleDownDetector.Hit.normal.x), Mathf.Abs(middleDownDetector.Hit.normal.y));
                 moveDirectionCorrection = -middleDownDetector.Hit.normal.x + middleDownDetector.Hit.normal.y;
-            }
+            }/*else{
+                physicDirection = lastNormal * rb.velocity;
+                moveDirection = Vector2.one - new Vector2(Mathf.Abs(lastNormal.x), Mathf.Abs(lastNormal.y));
+                moveDirectionCorrection = -lastNormal.x + lastNormal.y;
+            } */
 
             //rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection) + physicDirection;
             #endregion
@@ -166,6 +174,8 @@ public class SlimeBehaviour : MonoBehaviour {
             Vector2 currentNormal = middleDownDetector.Hit.normal;
             RaycastHit2D otherHit;
 
+            //nextHit = new RaycastHit2D();
+
             if (inputDirection < 0 && leftHit)
             {
                 nextHit = leftHit;
@@ -177,28 +187,59 @@ public class SlimeBehaviour : MonoBehaviour {
                 otherHit = leftHit;
             }
 
-            if (nextHit && nextHit.normal.magnitude > 0 && nextHit.collider.gameObject.tag == "Gosma")
+            if (nextHit && nextHit.normal.magnitude > 0)
             {
-                if (nextHit.normal != currentNormal)
+                if (nextHit.collider.gameObject.tag == "Gosma" || nextHit.collider.gameObject.tag == "Spinning")
                 {
-                    rb.position = nextHit.point + (nextHit.normal * floorOffset);
 
-                    float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
-
-                    rb.rotation = rot;
-
-                    if (topDetectors)
+                    if (nextHit.collider.gameObject.tag == "Spinning")
                     {
-                        print(Time.time);
-                    }
 
+                        if(spinDirection != 0){
+
+                            Vector2 spinNormal;
+
+
+                            if(currentNormal == Vector2.zero){
+                                spinNormal = lastNormal;
+                            }else{
+                                spinNormal = currentNormal;
+                            }
+
+
+                            rb.position +=( currentNormal *  (Vector2.one * (1.5f + floorOffset)) * -1);
+                            
+                            nextHit = new RaycastHit2D();
+
+                            currentNormal = Vector2.zero;
+
+                            rb.rotation += 180;
+                        }
+                    }
+                    if (nextHit.normal != currentNormal)
+                    {
+                        rb.position = nextHit.point + (nextHit.normal * floorOffset);
+
+                        float rot = Mathf.Rad2Deg * Mathf.Atan2(nextHit.normal.x * -1, nextHit.normal.y);
+
+                        rb.rotation = rot;
+
+                    }
+                    else
+                    {
+                        rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
+                        print(nextHit.collider.gameObject.name);
+                    }
                 }
                 else
                 {
-                    rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
+                    //rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
+                    rb.velocity = Vector2.zero;
                 }
             }
-            else {
+            else
+            {
+                //rb.velocity = (moveDirection * inputDirection * speed * moveDirectionCorrection);
                 rb.velocity = Vector2.zero;
             }
 
@@ -208,12 +249,16 @@ public class SlimeBehaviour : MonoBehaviour {
                 rb.rotation += 90;
             }
 
-            lastNormal = currentNormal;
+            if(middleDownDetector.Hit){
+                lastNormal = currentNormal;
+            }
 
             //rb.AddForce(middleDownDetector.Hit.normal * -1 * 1000, ForceMode2D.Force);
             Vector2 otherVelocity = Vector2.zero;
             if(middleDownDetector.Hit){
-                otherVelocity = middleDownDetector.Hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity;
+                if(middleDownDetector.Hit.collider.gameObject.GetComponent<Rigidbody2D>() != null){
+                    otherVelocity = middleDownDetector.Hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity;
+                }
             }
 
             if (rb.velocity.x * Mathf.Sign(otherVelocity.x) >= 0)
@@ -293,20 +338,32 @@ public class SlimeBehaviour : MonoBehaviour {
         rightTopDetector.Direction = transform.localRotation *Vector2.right;
     }
 
-    float CorrectInput(Vector2 normalMove) {
+    float CorrectInput(Vector2 normalMove, bool defaultDirection) {
 
         KeyCode backKey, frontKey;
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
         float inputVertical = Input.GetAxisRaw("Vertical");
 
+
         if (normalMove.y != 0)
         {
-            return inputHorizontal * normalMove.y;
+            if(defaultDirection){
+                return inputVertical * normalMove.y * -1;
+            }else{
+                return inputHorizontal * normalMove.y;
+            }
         }
         else if (normalMove.x != 0)
         {
 
-            return inputVertical * normalMove.x * -1;
+            if (defaultDirection)
+            {
+                return inputHorizontal * normalMove.x;
+            }
+            else
+            { 
+                return inputVertical * normalMove.x * -1;
+            }
         }
         else {
             return 0;
