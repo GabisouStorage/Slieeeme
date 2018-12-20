@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class stateController : MonoBehaviour {
 
@@ -15,12 +16,68 @@ public class stateController : MonoBehaviour {
     public float velocidadeSubidaVertical;
 
     private bool changeSlime = false;
+
+
+
+
+
+
+    private Animator anim;
+
+
+    [SerializeField]
+    private AnimationClip slimeWalk;
+    private AnimationClip slimeDeath;
+
+
+    [SerializeField]
+    private AnimationClip solidWalk;
+    private AnimationClip solidDeath;
+
+    [SerializeField]
+    private AnimationClip gasWalk;
+    private AnimationClip gasDeath;
+
+
+    [SerializeField]
+    private AnimationClip plasmaWalk;
+    private AnimationClip plasmaDeath;
+
+
+
+
+
+
+
+
+
+
+    [SerializeField]
+    private AudioSource slimeSong;
+
+    [SerializeField]
+    private AudioSource gasSong;
+
+    [SerializeField]
+    private AudioSource solidSong;
+
+    [SerializeField]
+    private AudioSource plasmaSong;
+
    
     private void Start()
     { 
         player = gameObject;
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
+
+        solidSong.volume = 0;
+        gasSong.volume = 0;
+        plasmaSong.volume = 0;
+
+
+
+        anim = GetComponentInChildren<Animator>();
         
         slime inicialController = new slime();
 
@@ -30,28 +87,28 @@ public class stateController : MonoBehaviour {
 
 
         estadoAtual = inicialController;
-       playerRB.gravityScale = 0;
-         isDead = false;
+        playerRB.gravityScale = 0;
+        isDead = false;
 }
 
     private void Update()
     {
-        if (Input.GetKeyDown("l") && autorizaMudancaSlime == true)
+        if ((Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1) ) && autorizaMudancaSlime == true)
         {
             enterSlime();
         }
 
-        if (Input.GetKeyDown("s"))
+        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2) ))
         {
             enterSolido( );
         }
 
-        if (Input.GetKeyDown("p"))
+        if ((Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4) ))
         {
             //enterPlasma(circuitoPai);
         }
 
-        if (Input.GetKeyDown("g"))
+        if ((Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3) ))
         {
             enterGasoso();
         }
@@ -79,6 +136,12 @@ public class stateController : MonoBehaviour {
 
     public void enterSolido()
     {
+        slimeSong.volume = 0;
+        solidSong.volume = 1;
+        gasSong.volume = 0;
+        plasmaSong.volume = 0;
+
+        anim.Play(solidWalk.name);
         exitCurrentState();
 
         playerRB.rotation = 0;
@@ -102,8 +165,16 @@ public class stateController : MonoBehaviour {
 
         SlimeBehaviour sb = gameObject.GetComponent<SlimeBehaviour>();
 
-        if (changeSlime || sb.CanChange)
-        { 
+        if (sb.CanChange)
+        {
+            slimeSong.volume = 1;
+            solidSong.volume = 0;
+            gasSong.volume = 0;
+            plasmaSong.volume = 0;
+
+
+            anim.Play(slimeWalk.name);
+
             exitCurrentState();
 
             slime slimeController = new slime();
@@ -124,6 +195,14 @@ public class stateController : MonoBehaviour {
 
     public void enterGasoso()
     {
+        slimeSong.volume = 0;
+        solidSong.volume = 0;
+        gasSong.volume = 1;
+        plasmaSong.volume = 0;
+
+
+        anim.Play(gasWalk.name);
+
         exitCurrentState();
 
         playerRB.rotation = 0;
@@ -147,6 +226,13 @@ public class stateController : MonoBehaviour {
 
     public void enterPlasma(tomadaController circuitoPai)
     {
+        slimeSong.volume = 0;
+        solidSong.volume = 0;
+        gasSong.volume = 0;
+        plasmaSong.volume = 1;
+
+
+        anim.Play(plasmaWalk.name);
         exitCurrentState();
 
         playerRB.rotation = 0;
@@ -282,7 +368,12 @@ public class stateController : MonoBehaviour {
     {
          
         stateController.isDead = true;
-        Destroy(player);
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        SceneManager.LoadScene(currentSceneName);
+
+        //Destroy(player);
     }
 
     

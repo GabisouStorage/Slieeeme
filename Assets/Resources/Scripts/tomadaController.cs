@@ -40,20 +40,20 @@ public class tomadaController : MonoBehaviour
     {
         if (aguardandoOrdens == true) { 
 
-            if (Input.GetKey("w") && caminhoCima == true)
+            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && caminhoCima == true)
             { 
                receberOrdens("cima");
             }
 
-            if (Input.GetKey("a") && caminhoEsquerda == true)
+            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && caminhoEsquerda == true)
             {
                 receberOrdens("esquerda");
             }
-            if (Input.GetKey("s") && caminhoBaixo == true)
+            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && caminhoBaixo == true)
             {
                 receberOrdens("baixo");
             }
-            if (Input.GetKey("d") && caminhoDireita == true)
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && caminhoDireita == true)
             {
                 receberOrdens("direita");
             }

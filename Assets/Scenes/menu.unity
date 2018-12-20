@@ -142,12 +142,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1782772070}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.3, y: -136.4}
-  m_SizeDelta: {x: 47.34, y: 22.57}
+  m_AnchoredPosition: {x: 12.98, y: -175.8}
+  m_SizeDelta: {x: 157.83, y: 46.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &351720032
 MonoBehaviour:
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -732,8 +732,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.22, y: -67.13}
-  m_SizeDelta: {x: 38.39, y: 24.44}
+  m_AnchoredPosition: {x: -36.38, y: -64.35}
+  m_SizeDelta: {x: 88.41, y: 56.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1374981022
 MonoBehaviour:
@@ -854,8 +854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.71, y: -91.05}
-  m_SizeDelta: {x: 70.49, y: 20.07}
+  m_AnchoredPosition: {x: 18.23, y: -122.15}
+  m_SizeDelta: {x: 170.01, y: 57.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489685319
 MonoBehaviour:
@@ -972,12 +972,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1782772070}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27.87, y: -113.73}
-  m_SizeDelta: {x: 66.12, y: 19.87}
+  m_AnchoredPosition: {x: -25.08, y: -233.6}
+  m_SizeDelta: {x: 102.2, y: 54.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545895257
 MonoBehaviour:
@@ -1290,8 +1290,8 @@ Transform:
   m_Children:
   - {fileID: 1374981021}
   - {fileID: 1489685318}
-  - {fileID: 1545895256}
   - {fileID: 351720031}
+  - {fileID: 1545895256}
   m_Father: {fileID: 776309300}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

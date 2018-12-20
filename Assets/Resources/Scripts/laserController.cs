@@ -22,39 +22,45 @@ public class laserController : MonoBehaviour {
         }
     }
 
+    void Start(){
+
+        this.GetComponent<SpriteRenderer>().color = Color.magenta;
+    }
+
 
     private void Update()
     {
-        if (ativo == false) { 
+        if(tempoEspera > 0){
+            if (ativo == false) { 
 
-        if (tempoDecorrido < tempoEspera)
-        {
-            tempoDecorrido += Time.deltaTime;
+                if (tempoDecorrido < tempoEspera)
+                {
+                    tempoDecorrido += Time.deltaTime;
 
-        }
-        else
-        {
-            tempoDecorrido = 0;
-            ativaLaser();
-        }
-    }
-
-        if (ativo == true)
-        {
-
-            if (tempoDecorrido < tempoTiro)
-            {
-                tempoDecorrido += Time.deltaTime;
-
+                }
+                else
+                {
+                    tempoDecorrido = 0;
+                    ativaLaser();
+                }
             }
-            else
+
+            if (ativo == true)
             {
-                tempoDecorrido = 0;
-                desativaLaser();
+
+                if (tempoDecorrido < tempoTiro )
+                {
+                    tempoDecorrido += Time.deltaTime;
+
+                }
+                else
+                {
+                    tempoDecorrido = 0;
+                    desativaLaser();
+                }
             }
+
         }
-
-
 
     }
 
@@ -63,14 +69,14 @@ public class laserController : MonoBehaviour {
     void ativaLaser()
     {
         ativo = true;
-        this.GetComponent<SpriteRenderer>().color = Color.red;
+        this.GetComponent<SpriteRenderer>().color = Color.magenta;
     }
 
 
     void desativaLaser()
     {
         ativo = false;
-        this.GetComponent<SpriteRenderer>().color = Color.blue;
+        this.GetComponent<SpriteRenderer>().color = Color.clear;
 
     }
 
