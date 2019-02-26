@@ -7,6 +7,8 @@ public class ventiladorController : MonoBehaviour {
     public int forcaVento = 5;
     public bool estouSugando = false;
 
+    
+
    
    
     private void OnTriggerStay2D(Collider2D collision)
@@ -107,20 +109,24 @@ public class ventiladorController : MonoBehaviour {
 
     public void ventarPraCima(Rigidbody2D RB2D)
     {
-        RB2D.AddForce(new Vector2(0, 1 * forcaVento));
+      
+
+        RB2D.velocity = (new Vector2(0, 1 * forcaVento));
     }
 
 
     public void ventarPraBaixo(Rigidbody2D RB2D)
     {
-        RB2D.AddForce(new Vector2(0, -1 * forcaVento));
+ 
+        RB2D.velocity = (new Vector2(0,- 1 * forcaVento));
+
+
     }
 
 
     public void ventarPraDireita(Rigidbody2D RB2D)
     {
-        RB2D.AddForce(new Vector2(1 * forcaVento, 0));
-        Debug.Log("ventou");
+        RB2D.velocity = (new Vector2(1 * forcaVento,0));
     }
 
 
