@@ -6,7 +6,7 @@ public class tomadaController : MonoBehaviour
 {
 
 
-    GameObject player;
+    public GameObject player;
 
     public string entradaTomada = "baixo";
 
@@ -21,7 +21,11 @@ public class tomadaController : MonoBehaviour
     public bool caminhoEsquerda= false;
 
 
+    public void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
 
+    }
 
 
 
@@ -183,7 +187,12 @@ public class tomadaController : MonoBehaviour
         stateController.pararSemBloquearMovimentacao();
     }
 
-    
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("marcus pinho");
+        
+    }
 
 }
 
