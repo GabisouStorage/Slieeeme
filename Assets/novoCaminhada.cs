@@ -25,9 +25,21 @@ public class novoCaminhada : MonoBehaviour
     //variavel que representa a velocidade do plasma
     public int velocidade = 10;
 
+    public seletorDirecao sd;
+
+
+
+
+
     private void Start()
     {
         proximo = pontoInicial;
+
+        seletorDirecao sd = gameObject.GetComponent<seletorDirecao>();
+
+       
+
+
     }
 
 
@@ -70,12 +82,15 @@ public class novoCaminhada : MonoBehaviour
                     proximo = getProximo(proximo, "w");
                     receberOrdens();
 
+                    sd = GetComponent<seletorDirecao>();
+
                 }
 
                 if (Input.GetKeyDown("a"))
                 {
                     proximo = getProximo(proximo, "a");
                     receberOrdens();
+
                 }
 
                 if (Input.GetKeyDown("s"))
@@ -151,6 +166,8 @@ public class novoCaminhada : MonoBehaviour
                 /* caso a opçao de direçao selecionada pelo jogador seja válida ,
                  * escolha como proximo ponto o vizinho associado a essa direçao
                  */
+
+
 
                 retorno = p.proximo[decodificarOpcao(opcaoEscolhida, p.proximo.Length - 1)];
             }
