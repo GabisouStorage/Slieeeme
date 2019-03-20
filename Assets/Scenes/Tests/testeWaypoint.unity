@@ -158,6 +158,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1523052444}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &39764747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -243,6 +249,7 @@ MonoBehaviour:
   epsilon: 0.2
   proximo: {fileID: 802656115}
   velocidade: 10
+  sd: {fileID: 0}
 --- !u!212 &244100406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -372,6 +379,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 826051106}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &265821164
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -466,6 +479,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1774957336}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &491024665
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -610,6 +629,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 2044381896}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &699744578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -704,6 +729,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1782727536}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &786545939
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -846,6 +877,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1111829598}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!1 &826051105
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +929,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 786545937}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &826051108
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -986,6 +1029,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1155823867}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &920407645
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1080,6 +1129,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 802656115}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &992669249
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1174,6 +1229,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1830328416}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &994983340
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1268,6 +1329,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 826051106}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1069834525
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1327,6 +1394,7 @@ GameObject:
   - component: {fileID: 1078862838}
   - component: {fileID: 1078862840}
   - component: {fileID: 1078862839}
+  - component: {fileID: 1078862841}
   m_Layer: 0
   m_Name: 4.b.3
   m_TagString: Untagged
@@ -1365,6 +1433,12 @@ MonoBehaviour:
   - {fileID: 994983338}
   - {fileID: 265821162}
   - {fileID: 1155823867}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1078862840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1413,6 +1487,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1078862841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078862837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9435cae4ab5889d41a10136eb926c101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalo: 6
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!1 &1111829597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,6 +1550,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 491024663}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1111829600
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1553,6 +1650,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 1078862838}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1155823869
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1729,6 +1832,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 802656115}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1523052446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1788,6 +1897,7 @@ GameObject:
   - component: {fileID: 1774957336}
   - component: {fileID: 1774957338}
   - component: {fileID: 1774957337}
+  - component: {fileID: 1774957339}
   m_Layer: 0
   m_Name: 4
   m_TagString: Untagged
@@ -1825,6 +1935,12 @@ MonoBehaviour:
   - {fileID: 1863240083}
   - {fileID: 920407643}
   - {fileID: 491024663}
+  euMesmo: {fileID: 0}
+  intervalo: 6
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1774957338
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1873,6 +1989,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1774957339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774957335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9435cae4ab5889d41a10136eb926c101, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalo: 6
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!1 &1782727535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,6 +2052,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 39764745}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1782727538
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2013,6 +2152,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 802656115}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1830328418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2107,6 +2252,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 992669247}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &1863240085
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2201,6 +2352,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proximo:
   - {fileID: 802656115}
+  euMesmo: {fileID: 0}
+  intervalo: 0
+  tempoDecorrido: 0
+  vizinhos: []
+  vizinhoAtual: {fileID: 0}
+  indiceVizinhoAtual: 0
 --- !u!212 &2044381898
 SpriteRenderer:
   m_ObjectHideFlags: 0
