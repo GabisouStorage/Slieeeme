@@ -28,6 +28,7 @@ public class novoCaminhada : MonoBehaviour
     public seletorDirecao sd;
 
 
+     
 
 
 
@@ -72,6 +73,7 @@ public class novoCaminhada : MonoBehaviour
             if (opcaoUnica(proximo))
             {
                 proximo = getProximo(proximo, "nao interessa");
+
                 receberOrdens();           
             }
             else
@@ -79,13 +81,14 @@ public class novoCaminhada : MonoBehaviour
 
                 if (Input.GetKeyDown("w"))
                 {
-                    proximo = getProximo(proximo, "w");
+                    proximo = getProximo(proximo, "a");
                     receberOrdens();
-
-                    sd = GetComponent<seletorDirecao>();
+ 
 
                 }
 
+
+                
                 if (Input.GetKeyDown("a"))
                 {
                     proximo = getProximo(proximo, "a");
@@ -104,7 +107,7 @@ public class novoCaminhada : MonoBehaviour
                     proximo = getProximo(proximo, "d");
                     receberOrdens();
                 }
-
+                
             }
         }
 
@@ -167,9 +170,7 @@ public class novoCaminhada : MonoBehaviour
                  * escolha como proximo ponto o vizinho associado a essa direçao
                  */
 
-
-
-                retorno = p.proximo[decodificarOpcao(opcaoEscolhida, p.proximo.Length - 1)];
+                retorno = p.proximo[p.indiceVizinhoAtual];
             }
             else
             {
@@ -266,8 +267,8 @@ public class novoCaminhada : MonoBehaviour
 
     }
 
-    
 
+     
 
 
 

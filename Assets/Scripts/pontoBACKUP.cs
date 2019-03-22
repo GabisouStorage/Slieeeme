@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ponto : MonoBehaviour
+public class pontoBACKUP : MonoBehaviour
 {
 
     //vetor que armazena os nós vizinhos ao meu ponto
@@ -11,13 +11,13 @@ public class ponto : MonoBehaviour
     //transform do proprio nó que carrega esse script
     public Transform euMesmo;
 
-    
+
     // intervalo de tempo para que a chave mude
     public float intervalo;
 
     //tempo decorrido desde a ultima mudança de chave
     public float tempoDecorrido;
- 
+
 
     //vizinho selecionado atual
     public Transform vizinhoAtual;
@@ -31,19 +31,18 @@ public class ponto : MonoBehaviour
 
         euMesmo = this.gameObject.transform;
 
-        for(int i = 0; i < proximo.Length; i++)
+        for (int i = 0; i < proximo.Length; i++)
         {
-           // desenhaLinhaVizinho(i);
+            // desenhaLinhaVizinho(i);
         }
 
-        
+
         vizinhoAtual = proximo[0];
 
     }
 
-
-
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         tempoDecorrido = tempoDecorrido + Time.deltaTime;
 
@@ -55,15 +54,6 @@ public class ponto : MonoBehaviour
 
         }
     }
-
-
-
-
-
-
-
-
-
 
     void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
     {
@@ -81,7 +71,7 @@ public class ponto : MonoBehaviour
 
     void desenhaLinhaVizinho(int i)
     {
-        DrawLine(euMesmo.position,proximo[i].position,Color.black,5000);
+        //DrawLine(euMesmo.position,proximo[i].position,Color.black,5000);
 
     }
 
@@ -90,23 +80,30 @@ public class ponto : MonoBehaviour
 
     void trocavizinho()
     {
-        if (proximo.Length > 0)
+
+
+
+
+        DrawLine(gameObject.transform.position, proximo[indiceVizinhoAtual].position, Color.red, 6);
+
+       // vizinhoAtual = proximo[indiceVizinhoAtual];
+
+
+        if ((indiceVizinhoAtual + 1) < (proximo.Length))
         {
-            DrawLine(gameObject.transform.position, proximo[indiceVizinhoAtual].position, Color.red, 6);
-
-            if ((indiceVizinhoAtual + 1) < (proximo.Length))
-            {
-                indiceVizinhoAtual++;
-            }
-            else
-            {
-                indiceVizinhoAtual = 0;
-
-            }
+            indiceVizinhoAtual++;
+        }
+        else
+        {
+            indiceVizinhoAtual = 0;
 
         }
 
     }
+
+
+
+
 
 
 

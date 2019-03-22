@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ponto : MonoBehaviour
+public class ponto2 : MonoBehaviour
 {
+
 
     //vetor que armazena os nós vizinhos ao meu ponto
     public Transform[] proximo;
@@ -11,54 +12,61 @@ public class ponto : MonoBehaviour
     //transform do proprio nó que carrega esse script
     public Transform euMesmo;
 
-    
+
     // intervalo de tempo para que a chave mude
     public float intervalo;
 
     //tempo decorrido desde a ultima mudança de chave
     public float tempoDecorrido;
- 
+
 
     //vizinho selecionado atual
     public Transform vizinhoAtual;
+
+
     //indice do vizinho selecionado atual
     public int indiceVizinhoAtual = 0;
+
+
+
+
+
+
+
+
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
 
+
+
         euMesmo = this.gameObject.transform;
 
-        for(int i = 0; i < proximo.Length; i++)
+        for (int i = 0; i < proximo.Length; i++)
         {
-           // desenhaLinhaVizinho(i);
+             desenhaLinhaVizinho(i);
         }
 
-        
+
         vizinhoAtual = proximo[0];
 
+
+
+
+
+
+
     }
 
-
-
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        tempoDecorrido = tempoDecorrido + Time.deltaTime;
-
-        if (tempoDecorrido > intervalo)
-        {
-            tempoDecorrido = 0;
-
-            trocavizinho();
-
-        }
+        
     }
-
-
-
-
 
 
 
@@ -88,25 +96,15 @@ public class ponto : MonoBehaviour
 
 
 
-    void trocavizinho()
-    {
-        if (proximo.Length > 0)
-        {
-            DrawLine(gameObject.transform.position, proximo[indiceVizinhoAtual].position, Color.red, 6);
 
-            if ((indiceVizinhoAtual + 1) < (proximo.Length))
-            {
-                indiceVizinhoAtual++;
-            }
-            else
-            {
-                indiceVizinhoAtual = 0;
 
-            }
 
-        }
 
-    }
+
+
+
+
+
 
 
 
