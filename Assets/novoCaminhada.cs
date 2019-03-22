@@ -79,35 +79,15 @@ public class novoCaminhada : MonoBehaviour
             else
             { 
 
-                if (Input.GetKeyDown("w"))
+                if (Input.GetKeyDown("g"))
                 {
-                    proximo = getProximo(proximo, "a");
+                    proximo = getProximo(proximo, "g");
                     receberOrdens();
  
 
                 }
 
-
-                
-                if (Input.GetKeyDown("a"))
-                {
-                    proximo = getProximo(proximo, "a");
-                    receberOrdens();
-
-                }
-
-                if (Input.GetKeyDown("s"))
-                {
-                    proximo = getProximo(proximo, "s");
-                    receberOrdens();
-                }
-
-                if (Input.GetKeyDown("d"))
-                {
-                    proximo = getProximo(proximo, "d");
-                    receberOrdens();
-                }
-                
+ 
             }
         }
 
@@ -161,28 +141,11 @@ public class novoCaminhada : MonoBehaviour
         }
         else
         {
-            /*caso haja mais, de um ponto na lista de vizinhos , escolha 
-             * algum dos vizinhos com base na opçao de direçao selecionada pelo jogador
-             */
-            if (decodificarOpcao(opcaoEscolhida, p.proximo.Length - 1) >= 0)
-            {
-                /* caso a opçao de direçao selecionada pelo jogador seja válida ,
-                 * escolha como proximo ponto o vizinho associado a essa direçao
-                 */
-
-                retorno = p.proximo[p.indiceVizinhoAtual];
-            }
-            else
-            {
-                /* caso a opçao de direçao selecionada pelo jogador seja INválida ,
-                * escolha como proximo ponto o próprio ponto onde voce está
-                */
-                retorno = pontoAtual;
-            }
+            /*escolhe o ponto que será o proximo , com base no ciclo do relógio*/
+            retorno = p.proximo[p.indiceVizinhoAtual];
         }
 
         return retorno;
-
     }
 
 
@@ -202,11 +165,12 @@ public class novoCaminhada : MonoBehaviour
     }
 
 
+    /*
     public int decodificarOpcao(string opcao,int UltimaPosicaoVetor)
     {
-        /* retorna um valor positivo, caso a opçao selecionada pelo jogador seja válida 
-         * e retorna um valor negativo , caso a opçao selecionada pelo jogador seja invalida 
-         */ 
+        /* rtorna um valor positivo, caso a opçao selecionada pelo jogador seja válida 
+         * e retorna um valor negativo , caso a opçao selecionada pelo jogador seja invalida  
+         
 
 
 
@@ -243,12 +207,11 @@ public class novoCaminhada : MonoBehaviour
         }
 
         return -1;
-
-
-
        
     }
 
+    */
+    
    
     public bool opcaoUnica(Transform pontoAnalisado)
     {

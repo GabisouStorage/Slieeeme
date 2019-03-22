@@ -112,6 +112,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &23123143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 23123144}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &23123144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23123143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.32, y: 0.4, z: -0.43718547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 620049026}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &39764744
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +192,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &39764747
@@ -382,7 +412,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &265821164
@@ -482,7 +511,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &491024665
@@ -556,8 +584,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620049025}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.79, y: -5.57, z: -0.0497774}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 49.426723, y: -7.076803, z: 0.38740808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 802656115}
@@ -580,8 +608,8 @@ Transform:
   - {fileID: 1782727536}
   - {fileID: 39764745}
   - {fileID: 1523052444}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 23123144}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &699744575
 GameObject:
@@ -632,7 +660,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &699744578
@@ -732,7 +759,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &786545939
@@ -880,7 +906,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!1 &826051105
@@ -932,7 +957,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &826051108
@@ -1032,7 +1056,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &920407645
@@ -1132,7 +1155,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &992669249
@@ -1232,7 +1254,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &994983340
@@ -1332,7 +1353,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1069834525
@@ -1394,7 +1414,6 @@ GameObject:
   - component: {fileID: 1078862838}
   - component: {fileID: 1078862840}
   - component: {fileID: 1078862839}
-  - component: {fileID: 1078862841}
   m_Layer: 0
   m_Name: 4.b.3
   m_TagString: Untagged
@@ -1432,11 +1451,9 @@ MonoBehaviour:
   - {fileID: 699744576}
   - {fileID: 994983338}
   - {fileID: 265821162}
-  - {fileID: 1155823867}
   euMesmo: {fileID: 0}
-  intervalo: 0
+  intervalo: 1
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1078862840
@@ -1487,23 +1504,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1078862841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078862837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9435cae4ab5889d41a10136eb926c101, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intervalo: 6
-  tempoDecorrido: 0
-  vizinhos: []
-  vizinhoAtual: {fileID: 0}
-  indiceVizinhoAtual: 0
 --- !u!1 &1111829597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1553,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1111829600
@@ -1653,7 +1652,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1155823869
@@ -1835,7 +1833,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1523052446
@@ -1897,7 +1894,6 @@ GameObject:
   - component: {fileID: 1774957336}
   - component: {fileID: 1774957338}
   - component: {fileID: 1774957337}
-  - component: {fileID: 1774957339}
   m_Layer: 0
   m_Name: 4
   m_TagString: Untagged
@@ -1934,11 +1930,9 @@ MonoBehaviour:
   proximo:
   - {fileID: 1863240083}
   - {fileID: 920407643}
-  - {fileID: 491024663}
   euMesmo: {fileID: 0}
-  intervalo: 6
+  intervalo: 0.5
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1774957338
@@ -1989,23 +1983,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1774957339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774957335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9435cae4ab5889d41a10136eb926c101, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intervalo: 6
-  tempoDecorrido: 0
-  vizinhos: []
-  vizinhoAtual: {fileID: 0}
-  indiceVizinhoAtual: 0
 --- !u!1 &1782727535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,7 +2032,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1782727538
@@ -2155,7 +2131,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1830328418
@@ -2255,7 +2230,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &1863240085
@@ -2355,7 +2329,6 @@ MonoBehaviour:
   euMesmo: {fileID: 0}
   intervalo: 0
   tempoDecorrido: 0
-  vizinhos: []
   vizinhoAtual: {fileID: 0}
   indiceVizinhoAtual: 0
 --- !u!212 &2044381898
