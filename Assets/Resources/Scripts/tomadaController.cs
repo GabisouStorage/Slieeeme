@@ -20,11 +20,16 @@ public class tomadaController : MonoBehaviour
     public bool caminhoDireita = false;
     public bool caminhoEsquerda= false;
 
+    //script novo de caminhada em circuitos associado ao player
+    public novoCaminhada novocaminho;
+
+    public Transform pontoInicial;
+
 
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
+        novocaminho = player.GetComponent<novoCaminhada>();
     }
 
 
@@ -38,6 +43,7 @@ public class tomadaController : MonoBehaviour
         transformaPlayerPlasma(player);
         player.transform.localPosition = new Vector3(0, 0, 0);
         aguardarOrdens();
+        liberarPlayer(player);
     }
 
     private void Update()
@@ -88,6 +94,7 @@ public class tomadaController : MonoBehaviour
         this.player = player;
        
 
+
     }
 
     public void liberarPlayer(GameObject player)
@@ -95,6 +102,9 @@ public class tomadaController : MonoBehaviour
         player.transform.parent = null;
         this.player = null;
 
+        player.GetComponent<novoCaminhada>().pontoInicial = pontoInicial;
+
+        player.GetComponent<novoCaminhada>().enabled = true;
 
     }
 

@@ -34,8 +34,12 @@ public class novoCaminhada : MonoBehaviour
 
     private void Start()
     {
-        proximo = pontoInicial;
+        if (pontoInicial != null)
+        {
 
+            proximo = pontoInicial;
+
+        }
         seletorDirecao sd = gameObject.GetComponent<seletorDirecao>();
 
        

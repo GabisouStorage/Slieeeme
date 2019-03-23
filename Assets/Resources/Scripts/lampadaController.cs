@@ -32,6 +32,10 @@ public class lampadaController : MonoBehaviour {
               //  player.GetComponent<Rigidbody2D>().gravityScale = -1;
             }
 
+         //desabilita o script nova caminhada relativo ao player que entra na lampada
+            player.GetComponent<novoCaminhada>().enabled = false;
+        
+
     }
     }
 
